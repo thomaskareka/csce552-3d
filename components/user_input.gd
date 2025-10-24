@@ -1,0 +1,60 @@
+extends Node
+
+@onready var parent: CharacterBody3D = get_parent()
+@export var input_deadzone := 0.25
+@export var max_velocity := 5
+@export var acceleration := 8
+
+const DASH_COOLDOWN = 0.6
+const DASH_LENGTH = 0.3
+const DASH_SPEED_CAP = 2 #multiplier
+const SMALL_PROJECTILE_COOLDOWN = 0.33
+const CHARGE_COOLDOWN = 0.5
+const CHARGE_TIME = 2.0
+
+var target_velocity := Vector3.ZERO
+var current_velocity := Vector3.ZERO
+
+
+var dash_time = 0
+var dash_cooldown_time = 0
+var dash_boost := 0.0
+var is_dashing := false
+var dash_dir := Vector3.ZERO
+
+var small_projectile_cooldown_time = 0
+var charge_held_time = 0
+var charge_projectile_cooldown_time = 0
+
+
+func _physics_process(delta: float):
+	_update_cooldowns(delta)
+	_handle_move(delta)
+
+func _update_cooldowns(delta: float) -> void:
+	if dash_time > 0.0: 
+		dash_time -= delta
+		if dash_time <= 0.0:
+			is_dashing = false
+	elif dash_cooldown_time > 0.0:
+		dash_cooldown_time -= delta
+
+func _handle_move(delta: float) -> void:
+	var raw_input = Input.get_vector("move_left", "move_right", "move_down", "move_up", input_deadzone)
+	var move_dir = Vector3(raw_input.x, raw_input.y, 0).normalized()
+	
+	if Input.is_action_just_pressed("dash_input") and dash_cooldown_time <= 0.0 and move_dir != Vector3.ZERO:
+		is_dashing = true
+		dash_time = DASH_LENGTH
+		dash_cooldown_time = DASH_COOLDOWN
+		dash_dir = move_dir
+	
+	if is_dashing:
+		current_velocity = lerp(dash_dir * max_velocity * DASH_SPEED_CAP, dash_dir * max_velocity, (1.0  - (dash_time / DASH_LENGTH)))
+	else:
+		target_velocity = move_dir * max_velocity
+		current_velocity = current_velocity.lerp(target_velocity, acceleration * delta)
+	
+	parent.velocity = current_velocity
+	parent.move_and_slide()
+	
