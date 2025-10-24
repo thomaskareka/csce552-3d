@@ -1,9 +1,10 @@
 extends Node
 
 @onready var parent: CharacterBody3D = get_parent()
-@export var input_deadzone := 0.25
+@export var input_deadzone := 0.15
 @export var max_velocity := 5
 @export var acceleration := 8
+@export var deceleration := 10
 
 const DASH_COOLDOWN = 0.6
 const DASH_LENGTH = 0.3
@@ -12,9 +13,9 @@ const SMALL_PROJECTILE_COOLDOWN = 0.33
 const CHARGE_COOLDOWN = 0.5
 const CHARGE_TIME = 2.0
 
+const MIN_ACCEL = 0.25
 var target_velocity := Vector3.ZERO
 var current_velocity := Vector3.ZERO
-
 
 var dash_time = 0
 var dash_cooldown_time = 0
@@ -41,6 +42,7 @@ func _update_cooldowns(delta: float) -> void:
 
 func _handle_move(delta: float) -> void:
 	var raw_input = Input.get_vector("move_left", "move_right", "move_down", "move_up", input_deadzone)
+	var input_magnitude := raw_input.length()
 	var move_dir = Vector3(raw_input.x, raw_input.y, 0).normalized()
 	
 	if Input.is_action_just_pressed("dash_input") and dash_cooldown_time <= 0.0 and move_dir != Vector3.ZERO:
@@ -52,8 +54,15 @@ func _handle_move(delta: float) -> void:
 	if is_dashing:
 		current_velocity = lerp(dash_dir * max_velocity * DASH_SPEED_CAP, dash_dir * max_velocity, (1.0  - (dash_time / DASH_LENGTH)))
 	else:
-		target_velocity = move_dir * max_velocity
-		current_velocity = current_velocity.lerp(target_velocity, acceleration * delta)
+		target_velocity = move_dir * max_velocity * input_magnitude
+		
+		if input_magnitude > 0.0: 
+			var acceleration_scale = max(input_magnitude, MIN_ACCEL)
+			var weight := clampf(acceleration * acceleration_scale * delta, 0.0, 1.0)
+			current_velocity = current_velocity.lerp(target_velocity, weight)
+		else:
+			var weight := clampf(deceleration * delta, 0.0, 1.0)
+			current_velocity = current_velocity.lerp(Vector3.ZERO, weight)
 	
 	parent.velocity = current_velocity
 	parent.move_and_slide()
