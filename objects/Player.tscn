@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bdpifgyevjjc5"]
+[gd_scene load_steps=5 format=3 uid="uid://bdpifgyevjjc5"]
 
 [ext_resource type="PackedScene" uid="uid://bmopfdpauylrf" path="res://components/UserInput.tscn" id="1_8ak8y"]
 
@@ -9,6 +9,10 @@ height = 1.2
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8ak8y"]
 radius = 0.2
 height = 1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_8ak8y"]
+radius = 0.25
+height = 0.5
 
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
 
@@ -21,3 +25,7 @@ mesh = SubResource("CapsuleMesh_gndvh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_8ak8y")
+
+[node name="AimIndicator" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+mesh = SubResource("SphereMesh_8ak8y")

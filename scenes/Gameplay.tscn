@@ -9,6 +9,7 @@
 [node name="WorldEnvironment" parent="." instance=ExtResource("1_5sdaa")]
 
 [node name="GameCamera" parent="." instance=ExtResource("2_a8mty")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2912872, 2.5408425)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 2.5, -12)
+fov = 30.0
 
 [node name="Player" parent="." instance=ExtResource("3_jfxgp")]

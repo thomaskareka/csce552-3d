@@ -1,6 +1,8 @@
 extends Node
 
 @onready var parent: CharacterBody3D = get_parent()
+@onready var aim_indicator: MeshInstance3D = $"../AimIndicator"
+
 @export var input_deadzone := 0.15
 @export var max_velocity := 5
 @export var acceleration := 8
@@ -12,6 +14,8 @@ const DASH_SPEED_CAP = 2 #multiplier
 const SMALL_PROJECTILE_COOLDOWN = 0.33
 const CHARGE_COOLDOWN = 0.5
 const CHARGE_TIME = 2.0
+
+const AIM_RADIUS = 2
 
 const MIN_ACCEL = 0.25
 var target_velocity := Vector3.ZERO
@@ -31,6 +35,7 @@ var charge_projectile_cooldown_time = 0
 func _physics_process(delta: float):
 	_update_cooldowns(delta)
 	_handle_move(delta)
+	_handle_aim(delta)
 
 func _update_cooldowns(delta: float) -> void:
 	if dash_time > 0.0: 
@@ -41,7 +46,7 @@ func _update_cooldowns(delta: float) -> void:
 		dash_cooldown_time -= delta
 
 func _handle_move(delta: float) -> void:
-	var raw_input = Input.get_vector("move_left", "move_right", "move_down", "move_up", input_deadzone)
+	var raw_input = Input.get_vector("move_right", "move_left", "move_down", "move_up", input_deadzone)
 	var input_magnitude := raw_input.length()
 	var move_dir = Vector3(raw_input.x, raw_input.y, 0).normalized()
 	
@@ -67,3 +72,8 @@ func _handle_move(delta: float) -> void:
 	parent.velocity = current_velocity
 	parent.move_and_slide()
 	
+func _handle_aim(delta: float) -> void:
+		var raw_input = Input.get_vector("aim_right", "aim_left", "aim_down", "aim_up", 0.1)
+		var input_vector = raw_input * AIM_RADIUS
+		aim_indicator.position.x = input_vector.x
+		aim_indicator.position.y = input_vector.y
