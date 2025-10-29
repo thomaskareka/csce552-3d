@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdpifgyevjjc5"]
+[gd_scene load_steps=6 format=3 uid="uid://bdpifgyevjjc5"]
 
-[ext_resource type="PackedScene" uid="uid://bmopfdpauylrf" path="res://components/UserInput.tscn" id="1_8ak8y"]
+[ext_resource type="PackedScene" uid="uid://bmopfdpauylrf" path="res://components/gameplay/UserInput.tscn" id="1_8ak8y"]
+[ext_resource type="PackedScene" uid="uid://1hoyngcpgbsi" path="res://components/gameplay/HealthSystem.tscn" id="2_gndvh"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_gndvh"]
 radius = 0.25
@@ -29,3 +30,6 @@ shape = SubResource("CapsuleShape3D_8ak8y")
 [node name="AimIndicator" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 mesh = SubResource("SphereMesh_8ak8y")
+
+[node name="HealthSystem" parent="." instance=ExtResource("2_gndvh")]
+entity_type = 0
