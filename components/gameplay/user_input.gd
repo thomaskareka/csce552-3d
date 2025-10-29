@@ -15,8 +15,8 @@ const DASH_COOLDOWN = 0.6
 const DASH_LENGTH = 0.3
 const DASH_SPEED_CAP = 2 #multiplier
 const SMALL_PROJECTILE_COOLDOWN = 0.33
-const CHARGE_COOLDOWN = 0.5
-const CHARGE_TIME = 2.0
+const CHARGE_COOLDOWN = 2
+const CHARGE_TIME = 0.8
 
 const AIM_RADIUS = 2
 
@@ -30,9 +30,9 @@ var dash_boost := 0.0
 var is_dashing := false
 var dash_dir := Vector3.ZERO
 
-var small_projectile_cooldown_time = 0
-var charge_held_time = 0
-var charge_projectile_cooldown_time = 0
+var small_projectile_cooldown_time = SMALL_PROJECTILE_COOLDOWN
+var charge_held_time = CHARGE_TIME
+var charge_projectile_cooldown_time = CHARGE_COOLDOWN
 
 var use_relative_joystick := false
 var mouse_delta := Vector2.ZERO
@@ -52,18 +52,20 @@ func _input(event: InputEvent) -> void:
 		mouse_delta += event.relative
 
 func _physics_process(delta: float):
-	_update_cooldowns(delta)
+	_update_dash_cooldown(delta)
 	_handle_move(delta)
 	_handle_aim(delta)
+	_handle_attack(delta)
 	mouse_delta = Vector2.ZERO
 
-func _update_cooldowns(delta: float) -> void:
+func _update_dash_cooldown(delta: float) -> void:
 	if dash_time > 0.0: 
 		dash_time -= delta
 		if dash_time <= 0.0:
 			is_dashing = false
 	elif dash_cooldown_time > 0.0:
 		dash_cooldown_time -= delta
+
 
 func _handle_move(delta: float) -> void:
 	var raw_input = Input.get_vector("move_right", "move_left", "move_down", "move_up", input_deadzone)
@@ -110,3 +112,26 @@ func _handle_aim(delta: float) -> void:
 	aim_indicator.position.x = aim_position.x
 	aim_indicator.position.y = aim_position.y
 	mouse_last_used = joystick_magnitude == 0
+
+func _handle_attack(delta: float):
+	if Input.is_action_just_released("charge_input"):
+		if charge_held_time <= 0 and charge_projectile_cooldown_time <= 0:
+			#TODO: attack
+			print("charge attack")
+			charge_projectile_cooldown_time = CHARGE_COOLDOWN
+		charge_held_time = CHARGE_TIME
+	elif not Input.is_action_pressed("charge_input"):
+		charge_held_time = CHARGE_TIME
+		if charge_projectile_cooldown_time > 0:
+			charge_projectile_cooldown_time -= delta
+			
+		if small_projectile_cooldown_time > 0:
+			small_projectile_cooldown_time -= delta
+		else:
+			small_projectile_cooldown_time = SMALL_PROJECTILE_COOLDOWN
+			#TODO: attack
+			print("small attack")
+	else:
+		small_projectile_cooldown_time = SMALL_PROJECTILE_COOLDOWN
+		if charge_projectile_cooldown_time <= 0:
+			charge_held_time -= delta
