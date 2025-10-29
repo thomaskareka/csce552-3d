@@ -8,6 +8,9 @@ extends Node
 @export var acceleration := 8
 @export var deceleration := 10
 
+var mouse_aim_sensitivity := 0.5
+var joystick_aim_sensitivity := 5
+
 const DASH_COOLDOWN = 0.6
 const DASH_LENGTH = 0.3
 const DASH_SPEED_CAP = 2 #multiplier
@@ -31,11 +34,28 @@ var small_projectile_cooldown_time = 0
 var charge_held_time = 0
 var charge_projectile_cooldown_time = 0
 
+var use_relative_joystick := false
+var mouse_delta := Vector2.ZERO
+var aim_position := Vector2.ZERO
+var mouse_last_used := true
+
+func _ready() -> void:
+	use_relative_joystick = GlobalData.data.get("use_relative", false)
+	mouse_aim_sensitivity = GlobalData.data.get("mouse_sensitivity", 0.5)
+	joystick_aim_sensitivity = GlobalData.data.get("joystick_sensitivity", 5)
+
+	print("using relative: ", use_relative_joystick)
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		mouse_delta += event.relative
 
 func _physics_process(delta: float):
 	_update_cooldowns(delta)
 	_handle_move(delta)
 	_handle_aim(delta)
+	mouse_delta = Vector2.ZERO
 
 func _update_cooldowns(delta: float) -> void:
 	if dash_time > 0.0: 
@@ -73,7 +93,20 @@ func _handle_move(delta: float) -> void:
 	parent.move_and_slide()
 	
 func _handle_aim(delta: float) -> void:
-		var raw_input = Input.get_vector("aim_right", "aim_left", "aim_down", "aim_up", 0.1)
-		var input_vector = raw_input * AIM_RADIUS
-		aim_indicator.position.x = input_vector.x
-		aim_indicator.position.y = input_vector.y
+	var joystick_raw = Input.get_vector("aim_right", "aim_left", "aim_down", "aim_up", 0.1)
+	var joystick_magnitude = joystick_raw.length()
+	if mouse_delta != Vector2.ZERO:
+		aim_position += Vector2(-mouse_delta.x, -mouse_delta.y) * delta * mouse_aim_sensitivity
+		mouse_last_used = true
+
+	if use_relative_joystick and joystick_magnitude > 0 and not mouse_last_used:
+		aim_position += joystick_raw * AIM_RADIUS * delta * joystick_aim_sensitivity
+	elif not use_relative_joystick and mouse_delta == Vector2.ZERO and not mouse_last_used:
+		aim_position = joystick_raw * AIM_RADIUS
+		
+	if aim_position.length() > AIM_RADIUS:
+		aim_position = aim_position.normalized() * AIM_RADIUS
+
+	aim_indicator.position.x = aim_position.x
+	aim_indicator.position.y = aim_position.y
+	mouse_last_used = joystick_magnitude == 0

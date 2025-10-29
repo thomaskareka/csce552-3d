@@ -5,6 +5,9 @@ const SAVE_PATH := "user://save.cfg"
 var data := {
 	"music_volume": 0,
 	"sfx_volume": 0,
+	"use_relative": true,
+	"mouse_sensitivity" : 0.5,
+	"joystick_sensitivity" : 5
 }
 
 func _ready() -> void:
