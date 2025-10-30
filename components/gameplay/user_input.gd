@@ -117,7 +117,6 @@ func _handle_attack(delta: float):
 	if Input.is_action_just_released("charge_input"):
 		if charge_held_time <= 0 and charge_projectile_cooldown_time <= 0:
 			#TODO: attack
-			print("charge attack")
 			charge_projectile_cooldown_time = CHARGE_COOLDOWN
 		charge_held_time = CHARGE_TIME
 	elif not Input.is_action_pressed("charge_input"):
@@ -130,7 +129,6 @@ func _handle_attack(delta: float):
 		else:
 			small_projectile_cooldown_time = SMALL_PROJECTILE_COOLDOWN
 			#TODO: attack
-			print("small attack")
 	else:
 		small_projectile_cooldown_time = SMALL_PROJECTILE_COOLDOWN
 		if charge_projectile_cooldown_time <= 0:
