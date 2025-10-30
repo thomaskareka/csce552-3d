@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://na07nxobd4yp"]
+
+[ext_resource type="Script" uid="uid://b641lhem8in3p" path="res://components/colliders/projectile_collider.gd" id="1_q23r2"]
+[ext_resource type="Script" uid="uid://bld0kecoqn0tx" path="res://components/projectiles/projectile.gd" id="1_xb04t"]
+
+[node name="Projectile" type="Node3D"]
+script = ExtResource("1_xb04t")
+
+[node name="ProjectileCollider" type="Area3D" parent="."]
+script = ExtResource("1_q23r2")
+LAYER = 8
+MASK = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ProjectileCollider"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]

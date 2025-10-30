@@ -2,6 +2,8 @@ extends Node
 
 @onready var parent: CharacterBody3D = get_parent()
 @onready var aim_indicator: MeshInstance3D = $"../AimIndicator"
+@onready var basic_projectile_manager: ProjectileManager = $"../BasicAttack"
+@onready var strong_projectile_manager: ProjectileManager = $"../StrongAttack"
 
 @export var input_deadzone := 0.15
 @export var max_velocity := 5
@@ -116,8 +118,10 @@ func _handle_aim(delta: float) -> void:
 func _handle_attack(delta: float):
 	if Input.is_action_just_released("charge_input"):
 		if charge_held_time <= 0 and charge_projectile_cooldown_time <= 0:
-			#TODO: attack
 			charge_projectile_cooldown_time = CHARGE_COOLDOWN
+			var direction = (aim_indicator.global_position - basic_projectile_manager.global_position).normalized()
+			var params = {"direction": direction}
+			strong_projectile_manager.spawn_projectile(params)
 		charge_held_time = CHARGE_TIME
 	elif not Input.is_action_pressed("charge_input"):
 		charge_held_time = CHARGE_TIME
@@ -128,7 +132,9 @@ func _handle_attack(delta: float):
 			small_projectile_cooldown_time -= delta
 		else:
 			small_projectile_cooldown_time = SMALL_PROJECTILE_COOLDOWN
-			#TODO: attack
+			var direction = (aim_indicator.global_position - basic_projectile_manager.global_position).normalized()
+			var params = {"direction": direction}
+			basic_projectile_manager.spawn_projectile(params)
 	else:
 		small_projectile_cooldown_time = SMALL_PROJECTILE_COOLDOWN
 		if charge_projectile_cooldown_time <= 0:

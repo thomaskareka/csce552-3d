@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://drcikn5cxi5i8"]
+
+[ext_resource type="Script" uid="uid://xa11w1vd7akg" path="res://components/projectiles/ProjectileManager.gd" id="1_e678s"]
+
+[node name="ProjectileManager" type="Node3D"]
+script = ExtResource("1_e678s")
