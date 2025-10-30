@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://clyer6k1tm78d"]
+
+[ext_resource type="Script" uid="uid://dsl5bmv0ujfk3" path="res://components/gameplay/entity_tracker.gd" id="1_pxmlt"]
+
+[node name="EntityTracker" type="Node" groups=["EntityTracker"]]
+script = ExtResource("1_pxmlt")

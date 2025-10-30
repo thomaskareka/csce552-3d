@@ -13,7 +13,11 @@ func _start_game() -> void:
 	for hs: HealthSystem in get_tree().get_nodes_in_group("health_system"):
 		hs.died.connect(_on_entity_died)
 		hs.health_changed.connect(_on_entity_hp_changed)
-
+	var player = get_tree().get_first_node_in_group("Player")
+	var boss = get_tree().get_first_node_in_group("Boss")
+	var entity_tracker: EntityTracker = get_tree().get_first_node_in_group("EntityTracker")
+	entity_tracker.reset()
+	entity_tracker.init(player, boss)
 
 func _on_entity_hp_changed(current: int, max: int, type: HealthSystem.EntityType):
 	if not (type == HealthSystem.EntityType.ENEMY):

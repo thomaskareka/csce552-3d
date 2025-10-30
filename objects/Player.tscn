@@ -1,10 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://bdpifgyevjjc5"]
+[gd_scene load_steps=20 format=3 uid="uid://bdpifgyevjjc5"]
 
 [ext_resource type="PackedScene" uid="uid://bmopfdpauylrf" path="res://components/gameplay/UserInput.tscn" id="1_8ak8y"]
 [ext_resource type="Script" uid="uid://bidq4ivueg7bv" path="res://components/colliders/entity_collider.gd" id="2_6vqvp"]
 [ext_resource type="PackedScene" uid="uid://1hoyngcpgbsi" path="res://components/gameplay/HealthSystem.tscn" id="2_gndvh"]
 [ext_resource type="Script" uid="uid://xa11w1vd7akg" path="res://components/projectiles/ProjectileManager.gd" id="4_f6j3j"]
 [ext_resource type="Script" uid="uid://ds16n8tolty8e" path="res://components/projectiles/projectile_data.gd" id="4_sderm"]
+[ext_resource type="Script" uid="uid://bqhg63xep6p1m" path="res://components/projectiles/movement_data/tracking_move.gd" id="5_reqkl"]
 [ext_resource type="Script" uid="uid://cxojmk3n7nf4g" path="res://components/projectiles/movement_data/base_move.gd" id="5_sderm"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_gndvh"]
@@ -31,15 +32,15 @@ radius = 0.25
 height = 0.5
 
 [sub_resource type="Resource" id="Resource_jmmr7"]
-script = ExtResource("5_sderm")
-metadata/_custom_type_script = "uid://cxojmk3n7nf4g"
+script = ExtResource("5_reqkl")
+metadata/_custom_type_script = "uid://bqhg63xep6p1m"
 
 [sub_resource type="Resource" id="Resource_3ma5b"]
 script = ExtResource("4_sderm")
 mesh = SubResource("SphereMesh_reqkl")
 hitbox = SubResource("SphereShape3D_sderm")
 movement_script = SubResource("Resource_jmmr7")
-speed = 30.0
+speed = 60.0
 metadata/_custom_type_script = "uid://ds16n8tolty8e"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sderm"]
@@ -93,9 +94,13 @@ shape = SubResource("CapsuleShape3D_6vqvp")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6302053, 0)
 script = ExtResource("4_f6j3j")
 PROJECTILE_DATA = SubResource("Resource_3ma5b")
-POOL_SIZE = 16
+POOL_SIZE = 2
 LAYER = 16
 MASK = 8
+parameters = {
+"target": 128,
+"track_strength": 1.5
+}
 
 [node name="StrongAttack" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6121025, 0)

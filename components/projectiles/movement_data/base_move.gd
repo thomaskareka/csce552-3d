@@ -4,7 +4,6 @@ class_name BaseMove
 var p: Projectile
 var params: Dictionary
 var local_data: Dictionary = {}
-
 var remaining_time: float
 
 func init(_p: Projectile, _params: Dictionary = {}):

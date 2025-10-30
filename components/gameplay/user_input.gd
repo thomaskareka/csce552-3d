@@ -16,7 +16,7 @@ var joystick_aim_sensitivity := 5
 const DASH_COOLDOWN = 0.6
 const DASH_LENGTH = 0.3
 const DASH_SPEED_CAP = 2 #multiplier
-const SMALL_PROJECTILE_COOLDOWN = 0.33
+const SMALL_PROJECTILE_COOLDOWN = 0.1
 const CHARGE_COOLDOWN = 2
 const CHARGE_TIME = 0.8
 
