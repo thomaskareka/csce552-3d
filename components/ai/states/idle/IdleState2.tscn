@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://1samddi45bot"]
+
+[sub_resource type="GDScript" id="GDScript_rals6"]
+script/source = "extends State
+
+@export var timer := 2.0
+@export var test: String = \"\"
+
+func tick(delta: float) -> void:
+	if timer < 0:
+		request_transition_to(test)
+"
+
+[node name="IdleState" type="Node3D"]
+script = SubResource("GDScript_rals6")
+test = "a"

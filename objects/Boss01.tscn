@@ -1,3 +1,20 @@
-[gd_scene format=3 uid="uid://bij33rgmt2n2h"]
+[gd_scene load_steps=5 format=3 uid="uid://bij33rgmt2n2h"]
+
+[ext_resource type="Script" uid="uid://bidq4ivueg7bv" path="res://components/colliders/entity_collider.gd" id="1_8qard"]
+[ext_resource type="Script" uid="uid://c2xvttwyhvc6h" path="res://components/ai/enemy_ai.gd" id="1_girlp"]
+[ext_resource type="PackedScene" uid="uid://f7uiqvdwatqk" path="res://components/ai/StateMachine.tscn" id="2_l3ovt"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_l3ovt"]
+radius = 3.0
 
 [node name="Boss01" type="Node3D" groups=["Boss"]]
+script = ExtResource("1_girlp")
+
+[node name="EntityCollider" type="Area3D" parent="."]
+script = ExtResource("1_8qard")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EntityCollider"]
+shape = SubResource("SphereShape3D_l3ovt")
+debug_color = Color(0.99668854, 0, 0.19077486, 0.41960785)
+
+[node name="StateMachine" parent="." instance=ExtResource("2_l3ovt")]

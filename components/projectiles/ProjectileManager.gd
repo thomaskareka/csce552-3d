@@ -16,7 +16,7 @@ func _physics_process(delta: float) -> void:
 		p.movement_data.tick(delta)
 
 func _ready() -> void:
-	for i in POOL_SIZE:
+	for i in range(POOL_SIZE):
 		projectile_pool.append(_create_projectile())
 	if not use_process:
 		self.process_mode = Node.PROCESS_MODE_DISABLED
