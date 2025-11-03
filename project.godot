@@ -33,6 +33,7 @@ health_system=""
 ProjectileCollection=""
 EntityTracker=""
 Boss=""
+Enemy=""
 
 [input]
 

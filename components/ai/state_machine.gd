@@ -8,6 +8,7 @@ var current_state: State = null
 var current_state_name: String = ""
 
 func change_to_start() -> void:
+	print("changing to start state ", start_state)
 	if start_state != "":
 		change_state(start_state)
 

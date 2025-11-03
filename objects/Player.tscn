@@ -7,10 +7,7 @@
 [ext_resource type="Script" uid="uid://ds16n8tolty8e" path="res://components/projectiles/projectile_data.gd" id="4_sderm"]
 [ext_resource type="Script" uid="uid://bqhg63xep6p1m" path="res://components/projectiles/movement_data/tracking_move.gd" id="5_reqkl"]
 [ext_resource type="Script" uid="uid://cxojmk3n7nf4g" path="res://components/projectiles/movement_data/base_move.gd" id="5_sderm"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_gndvh"]
-radius = 0.25
-height = 1.2
+[ext_resource type="PackedScene" uid="uid://c0xjbkaw7pa6r" path="res://assets/mesh/moth.glb" id="8_jmmr7"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8ak8y"]
 radius = 0.2
@@ -67,11 +64,6 @@ metadata/_custom_type_script = "uid://ds16n8tolty8e"
 
 [node name="UserInput" parent="." instance=ExtResource("1_8ak8y")]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("CapsuleMesh_gndvh")
-
-[node name="Skeleton3D" type="Skeleton3D" parent="MeshInstance3D"]
-
 [node name="PhysicsCollider" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_8ak8y")
 
@@ -109,3 +101,6 @@ PROJECTILE_DATA = SubResource("Resource_jqsbg")
 POOL_SIZE = 4
 LAYER = 16
 MASK = 8
+
+[node name="moth" parent="." instance=ExtResource("8_jmmr7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 0)

@@ -20,7 +20,7 @@ func tick(delta: float, _params: Dictionary = {}):
 			pass
 		ColliderMasks.TARGETS.NEAREST_ENEMY:
 			#TODO: get nearest
-			target_position = entity_tracker.get_boss_position()
+			target_position = entity_tracker.get_closest(p.global_position)
 		ColliderMasks.TARGETS.BOSS:
 			target_position = entity_tracker.get_boss_position()
 		_:

@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bdpifgyevjjc5" path="res://objects/Player.tscn" id="3_jfxgp"]
 [ext_resource type="Script" uid="uid://dbw7pnpc5lwuj" path="res://components/gameplay/gameplay_gui_manager.gd" id="5_jfxgp"]
 [ext_resource type="PackedScene" uid="uid://clyer6k1tm78d" path="res://components/gameplay/EntityTracker.tscn" id="6_4rwr5"]
-[ext_resource type="PackedScene" uid="uid://bij33rgmt2n2h" path="res://objects/Boss01.tscn" id="7_4rwr5"]
+[ext_resource type="PackedScene" uid="uid://bij33rgmt2n2h" path="res://objects/boss01/Boss01.tscn" id="7_4rwr5"]
 
 [node name="Gameplay" type="Node3D"]
 script = ExtResource("1_a8mty")
@@ -54,4 +54,4 @@ fov = 30.0
 [node name="EntityTracker" parent="." instance=ExtResource("6_4rwr5")]
 
 [node name="Boss01" parent="." instance=ExtResource("7_4rwr5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20.517256)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 40.692017)

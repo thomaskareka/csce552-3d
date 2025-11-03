@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://xvs1lencgiw4"]
+
+[ext_resource type="Script" uid="uid://8mkbk6poe4fp" path="res://components/ai/states/blobs/circle_idle.gd" id="1_b0syv"]
+
+[node name="CircleIdle" type="Node3D"]
+script = ExtResource("1_b0syv")
