@@ -3,9 +3,16 @@
 [ext_resource type="Script" uid="uid://bidq4ivueg7bv" path="res://components/colliders/entity_collider.gd" id="1_rwklj"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_cuit7"]
-radius = 2.0
+radius = 1.0
 
-[node name="BossBlob" type="Node3D" groups=["Enemy"]]
+[node name="BossBlob" type="CharacterBody3D" groups=["Enemy"]]
+collision_layer = 256
+collision_mask = 256
+
+[node name="PhysicsCollider" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_cuit7")
+debug_color = Color(0.972549, 0, 0, 0.41960785)
+debug_fill = false
 
 [node name="EntityCollider" type="Area3D" parent="."]
 script = ExtResource("1_rwklj")
@@ -13,3 +20,4 @@ script = ExtResource("1_rwklj")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EntityCollider"]
 shape = SubResource("SphereShape3D_cuit7")
 debug_color = Color(0.972549, 0, 0, 0.41960785)
+debug_fill = false

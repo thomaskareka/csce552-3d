@@ -3,14 +3,14 @@ class_name State
 
 signal request_transition(target_state_name: String, params: Dictionary)
 
-var entity: Node = null
+var entity: Node3D = null
 var state_magine: Node = null
 
 var state_length := 10.0
 var time_remaining := 10.0
 var transition_state = ""
 
-func enter(_entity: Node, _machine: Node, params: Dictionary = {}) -> void:
+func enter(_entity: Node3D, _machine: Node, params: Dictionary = {}) -> void:
 	entity = _entity
 	state_magine = _machine
 	time_remaining = state_length
