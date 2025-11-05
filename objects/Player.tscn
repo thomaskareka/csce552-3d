@@ -37,6 +37,7 @@ mesh = SubResource("SphereMesh_reqkl")
 hitbox = SubResource("SphereShape3D_sderm")
 movement_script = SubResource("Resource_jmmr7")
 speed = 60.0
+lifetime = 2.0
 metadata/_custom_type_script = "uid://ds16n8tolty8e"
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_sderm"]

@@ -37,6 +37,8 @@ func _add_projectile_deferred(p: Projectile):
 	p.global_position = self.global_position
 
 func _reset_projectile(p: Projectile):
+	if not active_projectiles.has(p):
+		return
 	active_projectiles.erase(p)
 	p.hide()
 	p.call_deferred("reparent", self)

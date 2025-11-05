@@ -18,7 +18,6 @@ func change_state(_name: String, params: Dictionary = {}) -> void:
 	
 	if current_state:
 		current_state.exit()
-		current_state.queue_free()
 		current_state = null
 		current_state_name = ""
 	
@@ -26,16 +25,15 @@ func change_state(_name: String, params: Dictionary = {}) -> void:
 		push_error("unknown state '%s'" % _name)
 		return
 	
-	var scene = state_scenes.get(_name)
-	if not scene:
-		push_error("scene for '%s' is null" % _name)
+	var state: PackedScene = state_scenes.get(_name)
+	if not state:
+		push_error("state for '%s' is null" % _name)
 		return
 	
-	var state_scene := scene.instantiate() as State
-	add_child(state_scene)
+	var state_instance := state.instantiate() as State
 	
-	state_scene.request_transition.connect(_on_state_transition_request)
-	current_state = state_scene
+	state_instance.request_transition.connect(_on_state_transition_request)
+	current_state = state_instance
 	current_state_name = _name
 	call_deferred("enter_state", params)
 

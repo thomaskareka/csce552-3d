@@ -1,23 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://b578iscp5s8yq"]
+[gd_scene load_steps=4 format=3 uid="uid://b578iscp5s8yq"]
 
 [ext_resource type="Script" uid="uid://bidq4ivueg7bv" path="res://components/colliders/entity_collider.gd" id="1_rwklj"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_cuit7"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_rwklj"]
 radius = 1.0
 
-[node name="BossBlob" type="CharacterBody3D" groups=["Enemy"]]
+[node name="BossBlob" type="RigidBody3D" groups=["Enemy"]]
 collision_layer = 256
 collision_mask = 256
+gravity_scale = 0.0
+lock_rotation = true
+linear_damp = 1.0
 
 [node name="PhysicsCollider" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_cuit7")
-debug_color = Color(0.972549, 0, 0, 0.41960785)
-debug_fill = false
+debug_color = Color(5.5350365e-06, 0.62375915, 0.28181925, 0.41960785)
 
 [node name="EntityCollider" type="Area3D" parent="."]
 script = ExtResource("1_rwklj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EntityCollider"]
-shape = SubResource("SphereShape3D_cuit7")
-debug_color = Color(0.972549, 0, 0, 0.41960785)
-debug_fill = false
+shape = SubResource("SphereShape3D_rwklj")
+debug_color = Color(0.9882353, 0, 0, 0.41960785)

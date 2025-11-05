@@ -4,3 +4,5 @@
 
 [node name="CircleIdle" type="Node3D"]
 script = ExtResource("1_b0syv")
+state_length = 1.0
+transition_state = "a_dual_lazer"

@@ -1,4 +1,4 @@
-extends Node
+extends Node3D
 class_name State
 
 signal request_transition(target_state_name: String, params: Dictionary)
@@ -6,22 +6,20 @@ signal request_transition(target_state_name: String, params: Dictionary)
 var entity: Node3D = null
 var state_magine: Node = null
 
-var state_length := 10.0
-var time_remaining := 10.0
-var transition_state = ""
+@export var state_length := 10.0
+var elapsed_time := 0.0
+@export var transition_state = ""
 
 func enter(_entity: Node3D, _machine: Node, params: Dictionary = {}) -> void:
 	entity = _entity
 	state_magine = _machine
-	time_remaining = state_length
-	set_physics_process(true)
 
 func exit() -> void:
-	set_physics_process(false)
+	queue_free()
 
 func tick(delta: float) -> void:
-	time_remaining -= delta
-	if time_remaining <= 0:
+	elapsed_time += delta
+	if elapsed_time >= state_length:
 		request_transition_to(transition_state)
 
 func request_transition_to(_name: String, params: Dictionary = {}) -> void:

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://w35owgb7ivem"]
+
+[ext_resource type="Script" uid="uid://dnl6wat8k1wab" path="res://components/ai/states/blobs/dual_lazer.gd" id="1_rdijx"]
+
+[node name="DualLazer" type="Node3D"]
+script = ExtResource("1_rdijx")

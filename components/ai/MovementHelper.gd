@@ -21,7 +21,19 @@ static func get_velocity_to_target(source: Vector3, target: Vector3, speed: floa
 	if speed * delta >= distance:
 		return direction / delta
 	return direction.normalized() * speed
-	
+
+static func move_with_force(item: RigidBody3D, delta: float, target_velocity: Vector3, acceleration: float):
+	var target_acceleration = (target_velocity - item.linear_velocity) / delta
+	if target_acceleration.length() > acceleration:
+		target_acceleration = target_acceleration.normalized() * acceleration
+	item.apply_central_force(item.mass * target_acceleration)
 
 static func get_direction_to_target(source: Vector3, target: Vector3) -> Vector3:
 	return (target - source).normalized()
+
+static func get_random_point_in_aabb(aabb: AABB) -> Vector3:
+	return Vector3(
+		randf_range(aabb.position.x, aabb.position.x + aabb.size.x),
+		randf_range(aabb.position.y, aabb.position.y + aabb.size.y),
+		randf_range(aabb.position.z, aabb.position.z + aabb.size.z)
+	)
