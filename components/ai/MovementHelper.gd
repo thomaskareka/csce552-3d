@@ -22,7 +22,9 @@ static func get_velocity_to_target(source: Vector3, target: Vector3, speed: floa
 		return direction / delta
 	return direction.normalized() * speed
 
-static func move_with_force(item: RigidBody3D, delta: float, target_velocity: Vector3, acceleration: float):
+static func move_with_force(item: RigidBody3D, delta: float, target_velocity: Vector3, acceleration: float, max_speed: float = 40):
+	if target_velocity.length() > max_speed:
+		target_velocity = target_velocity.normalized() * max_speed
 	var target_acceleration = (target_velocity - item.linear_velocity) / delta
 	if target_acceleration.length() > acceleration:
 		target_acceleration = target_acceleration.normalized() * acceleration

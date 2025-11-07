@@ -3,7 +3,7 @@ class_name GameplayManager
 
 @onready var gameplay_gui: GameplayGUI = $GameplayGUI
 @export var player_bounds: AABB = AABB(Vector3(-5,-3,0), Vector3(10, 6, 0))
-@export var boss_bounds: AABB = AABB(Vector3(-13, -7, 20), Vector3(26, 14, 0))
+@export var boss_bounds: AABB = AABB(Vector3(-10, -6, 20), Vector3(20, 12, 0))
 
 
 func _init() -> void:

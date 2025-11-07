@@ -13,6 +13,11 @@ func set_collision_data(shape: Shape3D, damage: int, layer: ColliderMasks.LAYERS
 	collider.damage = damage
 	collider_shape.shape = shape.duplicate()
 
+func get_aabb() -> AABB:
+	if mesh_instance:
+		return mesh_instance.get_aabb()
+	else: return AABB()
+
 func set_mesh(mesh: Mesh):
 	mesh_instance.mesh = mesh.duplicate()
 

@@ -1,10 +1,12 @@
 extends State
 
 var blobs: Array[Node3D] = []
-@export var velocity = 20.0
-@export var acceleration = 40.0
+@export var velocity = 20
+@export var acceleration = 40
 var player_bounds: AABB
 var boss_bounds: AABB
+
+var lazer_manager: ProjectileManager
 
 var state = 0
 var state_timer = 0
@@ -12,6 +14,7 @@ var targets: Array[Vector3] = []
 
 func enter(_entity: Node3D, _machine: Node, params: Dictionary = {}) -> void:
 	super.enter(_entity, _machine, params)
+	lazer_manager = get_node("ProjectileManager")
 	if _entity is BlobEnemyAI:
 		blobs = _entity.blobs
 		player_bounds = _entity.get_player_bounds()
@@ -20,11 +23,11 @@ func enter(_entity: Node3D, _machine: Node, params: Dictionary = {}) -> void:
 		var center_x = (boss_bounds.position.x + boss_bounds.end.x) * 0.5
 
 		var left_aabb = AABB(
-			Vector3(boss_bounds.position.x, boss_bounds.position.y, 5),
+			Vector3(boss_bounds.position.x, boss_bounds.position.y, 0),
 			Vector3(boss_bounds.size.x / 2, boss_bounds.size.y, 0)
 		)
 		var right_aabb = AABB(
-			Vector3(center_x, boss_bounds.position.y, 0),
+			Vector3(center_x, boss_bounds.position.y, -2),
 			Vector3(boss_bounds.size.x / 2, boss_bounds.size.y, 0)
 		)
 
@@ -41,10 +44,18 @@ func tick(delta: float) -> void:
 	match state:
 		0:
 			move_in_circle(2, delta)
+			if elapsed_time > 2:
+				change_state(1)
 		1: 
-			pass
+			move_in_circle(4, delta)
 		2:
 			pass
+
+func change_state(new_state: int):
+	state = new_state
+	match new_state:
+		1:
+			spawn_lazers()
 
 func move_in_circle(rotation_speed: float, delta:float) -> void:
 	var n = blobs.size()
@@ -57,4 +68,21 @@ func move_in_circle(rotation_speed: float, delta:float) -> void:
 		offset = rotation * offset
 		var target_velocity = MovementHelper.get_velocity_to_target(blob.global_position, center + offset, velocity, delta)
 		MovementHelper.move_with_force(blob, delta, target_velocity, acceleration)
-		
+
+func spawn_lazers() -> void:
+	var params_left = {
+		"constant_axis": Vector3(1, 0, 0),
+		"constant_position_value": targets[0].x / 2.0,
+		"beam_position": entity.global_position + targets[0],
+		"speed": 2.0
+	}
+	var params_right = {
+		"constant_axis": Vector3(1, 0, 0),
+		"constant_position_value": targets[1].y / 2.0,
+		"beam_position": entity.global_position + targets[1],
+		"speed": 2.0,
+		"starting_rotation": Vector3(0, 90, 0)
+	}
+	
+	lazer_manager.spawn_projectile(params_left)
+	lazer_manager.spawn_projectile(params_right)

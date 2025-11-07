@@ -1,9 +1,39 @@
-[gd_scene load_steps=2 format=3 uid="uid://dyafskg3ggf6v"]
+[gd_scene load_steps=6 format=3 uid="uid://dyafskg3ggf6v"]
 
-[sub_resource type="Environment" id="Environment_xpuop"]
+[ext_resource type="Texture2D" uid="uid://dvglyiyxd4sj4" path="res://assets/space_skybox2.png" id="1_p2sof"]
+
+[sub_resource type="Shader" id="Shader_xpuop"]
+code = "shader_type sky;
+
+uniform sampler2D source : filter_linear, source_color, hint_default_black;
+uniform float speed = 0.002;
+
+void sky() {
+	vec2 sky_coordinates = vec2(SKY_COORDS.x + TIME * speed, SKY_COORDS.y);
+	COLOR = texture(source, sky_coordinates).rgb;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p2sof"]
+shader = SubResource("Shader_xpuop")
+shader_parameter/source = ExtResource("1_p2sof")
+shader_parameter/speed = 0.005
+
+[sub_resource type="Sky" id="Sky_n0qil"]
+sky_material = SubResource("ShaderMaterial_p2sof")
+
+[sub_resource type="Environment" id="Environment_mjx3w"]
+background_mode = 2
+sky = SubResource("Sky_n0qil")
+sky_custom_fov = 90.7
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.31
+glow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment"]
-environment = SubResource("Environment_xpuop")
+environment = SubResource("Environment_mjx3w")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-1, 6.181723e-08, -6.181723e-08, 0, 0.7071067, 0.7071067, 8.742278e-08, 0.7071067, -0.7071067, 0, 20, -20)
+visible = false

@@ -35,6 +35,7 @@ func change_state(_name: String, params: Dictionary = {}) -> void:
 	state_instance.request_transition.connect(_on_state_transition_request)
 	current_state = state_instance
 	current_state_name = _name
+	add_child(current_state)
 	call_deferred("enter_state", params)
 
 func tick(delta) -> void:
