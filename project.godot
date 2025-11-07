@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="umbral dawn"
-run/main_scene="uid://yhh26tl28cen"
+run/main_scene="uid://3046lgay8fu8"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
