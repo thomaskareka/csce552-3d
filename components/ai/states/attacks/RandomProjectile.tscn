@@ -1,0 +1,34 @@
+[gd_scene load_steps=9 format=3 uid="uid://cvkcb21qu663b"]
+
+[ext_resource type="Script" uid="uid://dcuqfvp1bttno" path="res://components/ai/states/attacks/random_projectile.gd" id="1_0ihh8"]
+[ext_resource type="PackedScene" uid="uid://drcikn5cxi5i8" path="res://components/projectiles/ProjectileManager.tscn" id="2_sg0vl"]
+[ext_resource type="Script" uid="uid://cxojmk3n7nf4g" path="res://components/projectiles/movement_data/base_move.gd" id="3_ssaow"]
+[ext_resource type="Script" uid="uid://ds16n8tolty8e" path="res://components/projectiles/projectile_data.gd" id="4_sv85k"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_gw4td"]
+radius = 0.35
+
+[sub_resource type="SphereMesh" id="SphereMesh_j532q"]
+radius = 0.4
+height = 0.8
+
+[sub_resource type="Resource" id="Resource_0gs8g"]
+script = ExtResource("3_ssaow")
+metadata/_custom_type_script = "uid://cxojmk3n7nf4g"
+
+[sub_resource type="Resource" id="Resource_7t5td"]
+script = ExtResource("4_sv85k")
+mesh = SubResource("SphereMesh_j532q")
+hitbox = SubResource("SphereShape3D_gw4td")
+movement_script = SubResource("Resource_0gs8g")
+speed = 25.0
+metadata/_custom_type_script = "uid://ds16n8tolty8e"
+
+[node name="RandomProjectile" type="Node3D"]
+script = ExtResource("1_0ihh8")
+velocity = 50
+acceleration = 400
+transition_state = "circle_idle"
+
+[node name="ProjectileManager" parent="." instance=ExtResource("2_sg0vl")]
+PROJECTILE_DATA = SubResource("Resource_7t5td")

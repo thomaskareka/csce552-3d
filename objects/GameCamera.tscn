@@ -2,3 +2,4 @@
 
 [node name="GameCamera" type="Camera3D"]
 fov = 20.0
+near = 4.0

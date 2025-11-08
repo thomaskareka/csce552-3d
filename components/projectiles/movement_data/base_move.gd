@@ -10,6 +10,7 @@ func init(_p: Projectile, _params: Dictionary = {}):
 	p = _p
 	params = _params
 	remaining_time = _params.get("lifetime", 1)
+	p.global_position = _params.get("spawn_position", p.global_position)
 
 func tick(delta: float, _params: Dictionary = {}):
 	p.global_position += params.get("direction", Vector3.ZERO) * delta * params.get("base_velocity", 0)

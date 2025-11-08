@@ -8,8 +8,8 @@ const PROJECTILE_SCENE = preload("uid://na07nxobd4yp")
 @export var MASK: ColliderMasks.LAYERS = ColliderMasks.LAYERS.PLAYER
 @export var use_process: bool = true
 @export var parameters: Dictionary = {}
-var projectile_pool: Array[Projectile]
-var active_projectiles: Array[Projectile]
+var projectile_pool: Array[Projectile] = []
+var active_projectiles: Array[Projectile] = []
 
 func _physics_process(delta: float) -> void:
 	for p in active_projectiles:
@@ -65,3 +65,19 @@ func spawn_projectile(params: Dictionary):
 	p.set_deferred("process_mode", Node.PROCESS_MODE_INHERIT)
 	p.show()
 	p.reparent(get_tree().get_first_node_in_group("ProjectileCollection"))
+
+func _exit_tree() -> void:
+	_delete_all_projectiles()
+
+func _delete_all_projectiles():
+	for p in active_projectiles.duplicate():
+		if is_instance_valid(p):
+			p.set_deferred("process_mode", Node.PROCESS_MODE_DISABLED)
+			p.hide()
+			p.queue_free()
+	active_projectiles.clear()
+	
+	for p in projectile_pool.duplicate():
+		if is_instance_valid(p):
+			p.queue_free()
+	projectile_pool.clear()
