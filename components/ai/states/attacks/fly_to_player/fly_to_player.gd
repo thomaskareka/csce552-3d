@@ -14,6 +14,8 @@ var idle_count: int = 10
 var last_count: int = 10
 var center: Vector3
 var entity_tracker: EntityTracker
+var projectile_manager: ProjectileManager
+
 
 func enter(_entity: Node3D, _machine: Node, params: Dictionary = {}) -> void:
 	super.enter(_entity, _machine, params)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dip0a27ya01pq"]
 
-[ext_resource type="Script" uid="uid://ea6kkvobxfoi" path="res://components/ai/states/attacks/fly_to_player.gd" id="1_xxuml"]
+[ext_resource type="Script" uid="uid://ea6kkvobxfoi" path="res://components/ai/states/attacks/fly_to_player/fly_to_player.gd" id="1_xxuml"]
 
 [node name="FlyToPlayerFast" type="Node3D"]
 script = ExtResource("1_xxuml")

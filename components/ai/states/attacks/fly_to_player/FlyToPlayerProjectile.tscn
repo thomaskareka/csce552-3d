@@ -1,0 +1,35 @@
+[gd_scene load_steps=9 format=3 uid="uid://b43bdcvv7esv2"]
+
+[ext_resource type="Script" uid="uid://bsv1i8ilgg5rc" path="res://components/ai/states/attacks/fly_to_player/fly_to_player_projectile.gd" id="1_32ea2"]
+[ext_resource type="PackedScene" uid="uid://drcikn5cxi5i8" path="res://components/projectiles/ProjectileManager.tscn" id="2_32ea2"]
+[ext_resource type="Script" uid="uid://bqhg63xep6p1m" path="res://components/projectiles/movement_data/tracking_move.gd" id="3_32ea2"]
+[ext_resource type="Script" uid="uid://ds16n8tolty8e" path="res://components/projectiles/projectile_data.gd" id="4_come8"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_q4gah"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_02778"]
+
+[sub_resource type="Resource" id="Resource_bvib1"]
+script = ExtResource("3_32ea2")
+metadata/_custom_type_script = "uid://bqhg63xep6p1m"
+
+[sub_resource type="Resource" id="Resource_nhks8"]
+script = ExtResource("4_come8")
+mesh = SubResource("SphereMesh_02778")
+hitbox = SubResource("SphereShape3D_q4gah")
+movement_script = SubResource("Resource_bvib1")
+speed = 12.0
+lifetime = 1.5
+metadata/_custom_type_script = "uid://ds16n8tolty8e"
+
+[node name="FlyToPlayer" type="Node3D"]
+script = ExtResource("1_32ea2")
+transition_state = "circle_idle_fast"
+
+[node name="ProjectileManager" parent="." instance=ExtResource("2_32ea2")]
+PROJECTILE_DATA = SubResource("Resource_nhks8")
+POOL_SIZE = 8
+parameters = {
+"target": 4,
+"track_strength": 1.5
+}
