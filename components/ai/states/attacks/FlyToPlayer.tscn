@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqkyblubs1psd"]
+
+[ext_resource type="Script" uid="uid://ea6kkvobxfoi" path="res://components/ai/states/attacks/fly_to_player.gd" id="1_81j14"]
+
+[node name="FlyToPlayer" type="Node3D"]
+script = ExtResource("1_81j14")
+transition_state = "circle_idle"

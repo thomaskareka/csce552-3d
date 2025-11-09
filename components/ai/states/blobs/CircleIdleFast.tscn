@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cr3qxywvhtkj2"]
+
+[ext_resource type="Script" uid="uid://8mkbk6poe4fp" path="res://components/ai/states/blobs/circle_idle.gd" id="1_leuir"]
+
+[node name="CircleIdleFast" type="Node3D"]
+script = ExtResource("1_leuir")
+velocity = 30
+acceleration = 60
+radius = 8.0
+state_length = 5.0
+transition_state = "circle_idle"

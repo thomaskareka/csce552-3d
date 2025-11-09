@@ -23,13 +23,5 @@ func tick(delta: float) -> void:
 	var center = entity.global_position
 	
 	var n = blobs.size()
-	for i in range(n):
-		var blob: RigidBody3D = blobs[i]
-		var offset = Vector3(radius, 0.0, 0.0)
-		var angle = TAU / n * i + (elapsed_time * rotation_speed)
-		var rotation := Basis(spin_axis, angle)
-		offset = rotation * offset
-		var target_velocity = MovementHelper.get_velocity_to_target(blob.global_position, center + offset, velocity, delta)
-		MovementHelper.move_with_force(blob, delta, target_velocity, acceleration)
-		
+	MovementHelper.circular_move(delta, blobs, n, radius, elapsed_time, rotation_speed, velocity, acceleration, center, spin_axis)
 	

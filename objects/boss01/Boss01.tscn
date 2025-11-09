@@ -1,16 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://bij33rgmt2n2h"]
+[gd_scene load_steps=9 format=3 uid="uid://bij33rgmt2n2h"]
 
 [ext_resource type="Script" uid="uid://bl3vojitachid" path="res://components/ai/blob_ai.gd" id="1_hgrkj"]
 [ext_resource type="PackedScene" uid="uid://f7uiqvdwatqk" path="res://components/ai/StateMachine.tscn" id="2_nnc8w"]
 [ext_resource type="PackedScene" uid="uid://xvs1lencgiw4" path="res://components/ai/states/blobs/CircleIdle.tscn" id="3_nnc8w"]
 [ext_resource type="PackedScene" uid="uid://cvkcb21qu663b" path="res://components/ai/states/attacks/RandomProjectile.tscn" id="4_qnv2c"]
+[ext_resource type="PackedScene" uid="uid://dfdetqwvenpal" path="res://components/ai/states/attacks/DVDBounce.tscn" id="5_55rk3"]
+[ext_resource type="PackedScene" uid="uid://dqkyblubs1psd" path="res://components/ai/states/attacks/FlyToPlayer.tscn" id="6_5gcq7"]
+[ext_resource type="PackedScene" uid="uid://dip0a27ya01pq" path="res://components/ai/states/attacks/FlyToPlayerFast.tscn" id="7_0dtui"]
+[ext_resource type="PackedScene" uid="uid://cr3qxywvhtkj2" path="res://components/ai/states/blobs/CircleIdleFast.tscn" id="8_ntavk"]
 
 [node name="Boss01" type="Node3D" groups=["Boss"]]
 script = ExtResource("1_hgrkj")
 
 [node name="StateMachine" parent="." instance=ExtResource("2_nnc8w")]
-start_state = "a_random_projectiles"
+start_state = "a_fly_to_player_fast"
 state_scenes = Dictionary[String, PackedScene]({
+"a_dvd_bounce": ExtResource("5_55rk3"),
+"a_fly_to_player": ExtResource("6_5gcq7"),
+"a_fly_to_player_fast": ExtResource("7_0dtui"),
 "a_random_projectiles": ExtResource("4_qnv2c"),
-"circle_idle": ExtResource("3_nnc8w")
+"circle_idle": ExtResource("3_nnc8w"),
+"circle_idle_fast": ExtResource("8_ntavk")
 })
