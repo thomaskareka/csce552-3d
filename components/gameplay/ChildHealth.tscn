@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dotxcjf3uwy8b"]
+
+[ext_resource type="Script" uid="uid://bjfp7bkwfmpeh" path="res://components/gameplay/child_health.gd" id="1_iiekx"]
+
+[node name="ChildHealth" type="Node"]
+script = ExtResource("1_iiekx")

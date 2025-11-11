@@ -55,3 +55,4 @@ fov = 30.0
 
 [node name="Boss01" parent="." instance=ExtResource("7_4rwr5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
+TARGET_Z = null

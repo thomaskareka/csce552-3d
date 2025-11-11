@@ -28,7 +28,9 @@ func _do_hit(node: Node):
 	if target_parent.has_node("HealthSystem"):
 		var hs: HealthSystem = target_parent.get_node("HealthSystem")
 		hs.take_damage(damage)
-	
+	elif target_parent.has_node("ChildHealth"):
+		var ch: ChildHealth = target_parent.get_node("ChildHealth")
+		ch.take_damage(damage)
 	if SELF_DESTRUCT:
 		var parent = get_parent()
 		parent.despawn.emit(parent)

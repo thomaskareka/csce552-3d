@@ -62,7 +62,6 @@ damage = 15
 shape = SubResource("SphereShape3D_reay4")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-visible = false
 mesh = SubResource("SphereMesh_reay4")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]

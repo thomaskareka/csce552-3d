@@ -13,6 +13,9 @@ var current_health := max_health
 signal health_changed(current: int, max: int, type: EntityType)
 signal died(type: EntityType)
 
+func _ready() -> void:
+	current_health = max_health
+
 func take_damage(amount: int):
 	current_health = max(current_health - amount, 0)
 	health_changed.emit(current_health, max_health, entity_type)
