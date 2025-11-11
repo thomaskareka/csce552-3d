@@ -26,7 +26,7 @@ sky_material = SubResource("ShaderMaterial_p2sof")
 [sub_resource type="Environment" id="Environment_mjx3w"]
 background_mode = 2
 sky = SubResource("Sky_n0qil")
-sky_custom_fov = 90.7
+sky_custom_fov = 90.0
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 0.31
@@ -105,8 +105,8 @@ emission_enabled = true
 
 [sub_resource type="SphereMesh" id="SphereMesh_7nf2k"]
 material = SubResource("StandardMaterial3D_62m2q")
-radius = 2.0
-height = 4.0
+radius = 4.0
+height = 8.0
 
 [node name="WorldEnvironment" type="WorldEnvironment"]
 environment = SubResource("Environment_mjx3w")

@@ -14,7 +14,7 @@
 script = ExtResource("1_hgrkj")
 
 [node name="StateMachine" parent="." instance=ExtResource("2_nnc8w")]
-start_state = "a_fly_to_player_projectile"
+start_state = "a_fly_to_player"
 state_scenes = Dictionary[String, PackedScene]({
 "a_dvd_bounce": ExtResource("5_55rk3"),
 "a_fly_to_player": ExtResource("6_5gcq7"),
