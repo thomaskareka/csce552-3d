@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://b578iscp5s8yq"]
+[gd_scene load_steps=9 format=3 uid="uid://b578iscp5s8yq"]
 
 [ext_resource type="Script" uid="uid://bidq4ivueg7bv" path="res://components/colliders/entity_collider.gd" id="1_rwklj"]
 
@@ -10,6 +10,24 @@ bounce = 0.5
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_rwklj"]
 radius = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rwklj"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_reay4"]
+material = SubResource("StandardMaterial3D_rwklj")
+radius = 1.0
+height = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fptie"]
+cull_mode = 1
+shading_mode = 0
+
+[sub_resource type="SphereMesh" id="SphereMesh_l4ymu"]
+material = SubResource("StandardMaterial3D_fptie")
+radius = 1.05
+height = 2.1
 
 [node name="BossBlob" type="RigidBody3D" groups=["Enemy"]]
 collision_layer = 256
@@ -30,3 +48,9 @@ script = ExtResource("1_rwklj")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="EntityCollider"]
 shape = SubResource("SphereShape3D_rwklj")
 debug_color = Color(0.9882353, 0, 0, 0.41960785)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_reay4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
+mesh = SubResource("SphereMesh_l4ymu")

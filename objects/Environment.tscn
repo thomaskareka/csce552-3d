@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dyafskg3ggf6v"]
+[gd_scene load_steps=16 format=3 uid="uid://dyafskg3ggf6v"]
 
 [ext_resource type="Texture2D" uid="uid://dvglyiyxd4sj4" path="res://assets/space_skybox2.png" id="1_p2sof"]
+[ext_resource type="Texture2D" uid="uid://dp3eypt20twsn" path="res://assets/black_hole_gradient.tres" id="2_62m2q"]
 
 [sub_resource type="Shader" id="Shader_xpuop"]
 code = "shader_type sky;
@@ -31,9 +32,114 @@ ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 0.31
 glow_enabled = true
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_p2sof"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 90, 0)
+emission_ring_height = 2.0
+emission_ring_radius = 8.0
+emission_ring_inner_radius = 4.0
+emission_ring_cone_angle = 20.0
+flatness = 1.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -40.0
+radial_accel_max = -20.000002
+tangential_accel_min = 19.999998
+tangential_accel_max = 39.999996
+damping_min = 10.0
+damping_max = 20.0
+
+[sub_resource type="Curve" id="Curve_n0qil"]
+_data = [Vector2(0, 1), 0.0, -0.75960696, 0, 1, Vector2(0.99999, 0.24040067), 0.0, 0.0, 0, 0, Vector2(1, 0), -24007.465, 0.0, 1, 0]
+point_count = 3
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mjx3w"]
+transparency = 1
+blend_mode = 1
+depth_draw_mode = 1
+albedo_texture = ExtResource("2_62m2q")
+emission_enabled = true
+emission = Color(1, 0.7647059, 0.41960785, 1)
+emission_operator = 1
+emission_on_uv2 = true
+emission_texture = ExtResource("2_62m2q")
+use_particle_trails = true
+
+[sub_resource type="TubeTrailMesh" id="TubeTrailMesh_62m2q"]
+material = SubResource("StandardMaterial3D_mjx3w")
+add_uv2 = true
+radius = 0.6
+sections = 12
+section_length = 0.1
+section_rings = 2
+curve = SubResource("Curve_n0qil")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n0qil"]
+transparency = 1
+blend_mode = 1
+albedo_color = Color(1, 0.90588236, 0.6392157, 1)
+use_particle_trails = true
+stencil_flags = 2
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mjx3w"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 90, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 8.0
+emission_ring_inner_radius = 2.0
+emission_ring_cone_angle = 90.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -80.0
+radial_accel_max = -20.000002
+tangential_accel_min = 19.999998
+tangential_accel_max = 39.999996
+damping_min = 0.1
+damping_max = 0.3
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_w0p17"]
+size = 4.0
+section_segments = 16
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_62m2q"]
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_7nf2k"]
+material = SubResource("StandardMaterial3D_62m2q")
+radius = 2.0
+height = 4.0
+
 [node name="WorldEnvironment" type="WorldEnvironment"]
 environment = SubResource("Environment_mjx3w")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-1, 6.181723e-08, -6.181723e-08, 0, 0.7071067, 0.7071067, 8.742278e-08, 0.7071067, -0.7071067, 0, 20, -20)
 visible = false
+
+[node name="BlackHole" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.795395, -18.738552, 77.501175)
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="BlackHole"]
+transform = Transform3D(0.92083865, -0.36534232, -0.13631253, 0.38994375, 0.86274326, 0.3218973, 0, -0.3495697, 0.93691033, 0, 0, 0)
+amount = 700
+lifetime = 4.0
+preprocess = 4.0
+local_coords = true
+transform_align = 2
+trail_enabled = true
+trail_lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_p2sof")
+draw_pass_1 = SubResource("TubeTrailMesh_62m2q")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="BlackHole"]
+visible = false
+material_override = SubResource("StandardMaterial3D_n0qil")
+amount = 500
+lifetime = 4.0
+preprocess = 2.0
+trail_enabled = true
+trail_lifetime = 0.5
+process_material = SubResource("ParticleProcessMaterial_mjx3w")
+draw_pass_1 = SubResource("RibbonTrailMesh_w0p17")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BlackHole"]
+mesh = SubResource("SphereMesh_7nf2k")
