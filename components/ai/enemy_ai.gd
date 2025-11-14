@@ -8,6 +8,9 @@ class_name EnemyAI
 var player_bounds: AABB
 var boss_bounds: AABB
 
+var last_state = ""
+var phase = 1
+
 func _ready() -> void:
 	var timer := Timer.new()
 	timer.wait_time = 1.0
@@ -43,8 +46,36 @@ func _physics_process(delta: float) -> void:
 	state_machine.tick(delta)
 
 func choose_state(params: Dictionary = {}) -> Array:
-	push_error("_choose_state not implemented on ", self)
-	return []
+	var desired_prefix : String = "i_"
+	if last_state != "" and last_state.begins_with("i_"):
+		desired_prefix = "a_"
+	
+	var candidates := []
+	var total_weight := 0
+	for key in states.keys():
+		if not key.begins_with(desired_prefix): continue
+		
+		var state: StateRequirement = states[key]
+		if state.scene == null:
+			continue
+		
+		if phase < state.min_phase || (phase > state.max_phase && state.max_phase != 0):
+			continue
+		
+		candidates.append([key, state.weight])
+		total_weight += state.weight
+
+	var pick := randf() * total_weight
+	var sum := 0
+	var chosen_key = ""
+	for pair in candidates:
+		sum += pair[1]
+		if pick <= sum:
+			chosen_key = pair[0]
+			break
+	if chosen_key == "" and not candidates.is_empty():
+		chosen_key = candidates[0][0]
+	return [chosen_key, params]
 
 func update_tracked_data(state: String) -> void:
-	push_error("_update_tracked_data not implemented on ", self)
+	last_state = state

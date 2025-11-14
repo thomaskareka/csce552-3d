@@ -9,4 +9,3 @@ velocity = 25.0
 acceleration = 50.0
 shoot_delay = 0.5
 state_length = 5.0
-transition_state = "circle_idle_fast"

@@ -31,7 +31,6 @@ metadata/_custom_type_script = "uid://ds16n8tolty8e"
 
 [node name="FlyToPlayer" type="Node3D"]
 script = ExtResource("1_32ea2")
-transition_state = "circle_idle_fast"
 
 [node name="ProjectileManager" parent="." instance=ExtResource("2_32ea2")]
 PROJECTILE_DATA = SubResource("Resource_nhks8")

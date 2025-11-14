@@ -28,7 +28,6 @@ metadata/_custom_type_script = "uid://ds16n8tolty8e"
 script = ExtResource("1_0ihh8")
 velocity = 50
 acceleration = 400
-transition_state = "circle_idle"
 
 [node name="ProjectileManager" parent="." instance=ExtResource("2_sg0vl")]
 PROJECTILE_DATA = SubResource("Resource_7t5td")

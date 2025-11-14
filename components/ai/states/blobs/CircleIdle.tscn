@@ -5,4 +5,3 @@
 [node name="CircleIdle" type="Node3D"]
 script = ExtResource("1_b0syv")
 state_length = 5.0
-transition_state = "circle_idle"

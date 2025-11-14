@@ -4,4 +4,3 @@
 
 [node name="FlyToPlayer" type="Node3D"]
 script = ExtResource("1_81j14")
-transition_state = "circle_idle"

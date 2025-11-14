@@ -1,9 +1,6 @@
 extends Node3D
 class_name StateMachine
 
-#do not use a strict transition, let the boss choose
-const DEFER_STATE = "defer"
-
 var start_state: String = ""
 var state_scenes: Dictionary[String, PackedScene] = {}
 
@@ -18,7 +15,7 @@ func change_to_start() -> void:
 		change_state(start_state)
 
 func change_state(_name: String, params: Dictionary = {}) -> void:
-	if _name == DEFER_STATE:
+	if _name == "":
 		_name = parent.choose_state(params)[0]
 		params = parent.choose_state(params)[1]
 
