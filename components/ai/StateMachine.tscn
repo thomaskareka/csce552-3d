@@ -4,5 +4,3 @@
 
 [node name="StateMachine" type="Node3D"]
 script = ExtResource("1_8c8hg")
-start_state = null
-state_scenes = null

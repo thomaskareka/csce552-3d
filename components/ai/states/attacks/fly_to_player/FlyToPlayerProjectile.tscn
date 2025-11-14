@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://b43bdcvv7esv2"]
+[gd_scene load_steps=10 format=3 uid="uid://b43bdcvv7esv2"]
 
 [ext_resource type="Script" uid="uid://bsv1i8ilgg5rc" path="res://components/ai/states/attacks/fly_to_player/fly_to_player_projectile.gd" id="1_32ea2"]
 [ext_resource type="PackedScene" uid="uid://drcikn5cxi5i8" path="res://components/projectiles/ProjectileManager.tscn" id="2_32ea2"]
@@ -7,7 +7,14 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_q4gah"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_32ea2"]
+albedo_color = Color(0.6510898, 0.0003363377, 0.6563508, 1)
+emission_enabled = true
+emission = Color(0.6509804, 0, 0.654902, 1)
+emission_energy_multiplier = 0.34
+
 [sub_resource type="SphereMesh" id="SphereMesh_02778"]
+material = SubResource("StandardMaterial3D_32ea2")
 
 [sub_resource type="Resource" id="Resource_bvib1"]
 script = ExtResource("3_32ea2")

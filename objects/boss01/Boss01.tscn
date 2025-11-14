@@ -1,31 +1,66 @@
-[gd_scene load_steps=11 format=3 uid="uid://bij33rgmt2n2h"]
+[gd_scene load_steps=17 format=3 uid="uid://bij33rgmt2n2h"]
 
 [ext_resource type="Script" uid="uid://bl3vojitachid" path="res://components/ai/blob_ai.gd" id="1_hgrkj"]
 [ext_resource type="PackedScene" uid="uid://1hoyngcpgbsi" path="res://components/gameplay/HealthSystem.tscn" id="2_0t087"]
 [ext_resource type="PackedScene" uid="uid://f7uiqvdwatqk" path="res://components/ai/StateMachine.tscn" id="2_nnc8w"]
+[ext_resource type="Script" uid="uid://be4t8sbipsmoi" path="res://components/ai/state_requirement.gd" id="2_ntavk"]
 [ext_resource type="PackedScene" uid="uid://xvs1lencgiw4" path="res://components/ai/states/blobs/CircleIdle.tscn" id="3_nnc8w"]
 [ext_resource type="PackedScene" uid="uid://cvkcb21qu663b" path="res://components/ai/states/attacks/RandomProjectile.tscn" id="4_qnv2c"]
-[ext_resource type="PackedScene" uid="uid://dfdetqwvenpal" path="res://components/ai/states/attacks/DVDBounce.tscn" id="5_55rk3"]
 [ext_resource type="PackedScene" uid="uid://dqkyblubs1psd" path="res://components/ai/states/attacks/fly_to_player/FlyToPlayer.tscn" id="6_5gcq7"]
 [ext_resource type="PackedScene" uid="uid://dip0a27ya01pq" path="res://components/ai/states/attacks/fly_to_player/FlyToPlayerFast.tscn" id="7_0dtui"]
 [ext_resource type="PackedScene" uid="uid://cr3qxywvhtkj2" path="res://components/ai/states/blobs/CircleIdleFast.tscn" id="8_ntavk"]
 [ext_resource type="PackedScene" uid="uid://b43bdcvv7esv2" path="res://components/ai/states/attacks/fly_to_player/FlyToPlayerProjectile.tscn" id="9_6onux"]
 
+[sub_resource type="Resource" id="Resource_ay7u0"]
+script = ExtResource("2_ntavk")
+scene = ExtResource("6_5gcq7")
+max_phase = 3
+metadata/_custom_type_script = "uid://be4t8sbipsmoi"
+
+[sub_resource type="Resource" id="Resource_xo1di"]
+script = ExtResource("2_ntavk")
+scene = ExtResource("7_0dtui")
+max_phase = 3
+metadata/_custom_type_script = "uid://be4t8sbipsmoi"
+
+[sub_resource type="Resource" id="Resource_0t087"]
+script = ExtResource("2_ntavk")
+scene = ExtResource("9_6onux")
+max_phase = 3
+metadata/_custom_type_script = "uid://be4t8sbipsmoi"
+
+[sub_resource type="Resource" id="Resource_ntavk"]
+script = ExtResource("2_ntavk")
+scene = ExtResource("3_nnc8w")
+max_phase = 3
+metadata/_custom_type_script = "uid://be4t8sbipsmoi"
+
+[sub_resource type="Resource" id="Resource_6onux"]
+script = ExtResource("2_ntavk")
+scene = ExtResource("8_ntavk")
+max_phase = 3
+metadata/_custom_type_script = "uid://be4t8sbipsmoi"
+
+[sub_resource type="Resource" id="Resource_tv0l8"]
+script = ExtResource("2_ntavk")
+scene = ExtResource("4_qnv2c")
+max_phase = 3
+metadata/_custom_type_script = "uid://be4t8sbipsmoi"
+
 [node name="Boss01" type="Node3D" groups=["Boss"]]
 script = ExtResource("1_hgrkj")
+states = Dictionary[String, ExtResource("2_ntavk")]({
+"a_fly_to_player": SubResource("Resource_ay7u0"),
+"a_fly_to_player_fast": SubResource("Resource_xo1di"),
+"a_fly_to_player_projectile": SubResource("Resource_0t087"),
+"a_random_projectile": SubResource("Resource_tv0l8"),
+"i_circle": SubResource("Resource_ntavk"),
+"i_circle_fast": SubResource("Resource_6onux")
+})
+start_state = "i_circle_fast"
 
 [node name="HealthSystem" parent="." instance=ExtResource("2_0t087")]
 max_health = 500
 entity_type = 1
 
 [node name="StateMachine" parent="." instance=ExtResource("2_nnc8w")]
-start_state = "a_fly_to_player_projectile"
-state_scenes = Dictionary[String, PackedScene]({
-"a_dvd_bounce": ExtResource("5_55rk3"),
-"a_fly_to_player": ExtResource("6_5gcq7"),
-"a_fly_to_player_fast": ExtResource("7_0dtui"),
-"a_fly_to_player_projectile": ExtResource("9_6onux"),
-"a_random_projectiles": ExtResource("4_qnv2c"),
-"circle_idle": ExtResource("3_nnc8w"),
-"circle_idle_fast": ExtResource("8_ntavk")
-})

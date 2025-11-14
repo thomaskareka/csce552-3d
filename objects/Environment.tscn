@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dvglyiyxd4sj4" path="res://assets/space_skybox2.png" id="1_p2sof"]
 [ext_resource type="Texture2D" uid="uid://dp3eypt20twsn" path="res://assets/black_hole_gradient.tres" id="2_62m2q"]
+[ext_resource type="Texture2D" uid="uid://cmr58fvgdkqy4" path="res://assets/black_hole_gradient_2d.tres" id="3_n0qil"]
 
 [sub_resource type="Shader" id="Shader_xpuop"]
 code = "shader_type sky;
@@ -73,32 +74,6 @@ section_length = 0.1
 section_rings = 2
 curve = SubResource("Curve_n0qil")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n0qil"]
-transparency = 1
-blend_mode = 1
-albedo_color = Color(1, 0.90588236, 0.6392157, 1)
-use_particle_trails = true
-stencil_flags = 2
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mjx3w"]
-emission_shape = 6
-emission_ring_axis = Vector3(0, 90, 1)
-emission_ring_height = 1.0
-emission_ring_radius = 8.0
-emission_ring_inner_radius = 2.0
-emission_ring_cone_angle = 90.0
-gravity = Vector3(0, 0, 0)
-radial_accel_min = -80.0
-radial_accel_max = -20.000002
-tangential_accel_min = 19.999998
-tangential_accel_max = 39.999996
-damping_min = 0.1
-damping_max = 0.3
-
-[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_w0p17"]
-size = 4.0
-section_segments = 16
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_62m2q"]
 albedo_color = Color(0, 0, 0, 1)
 emission_enabled = true
@@ -107,6 +82,19 @@ emission_enabled = true
 material = SubResource("StandardMaterial3D_62m2q")
 radius = 4.0
 height = 8.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w0p17"]
+cull_mode = 1
+albedo_texture = ExtResource("3_n0qil")
+emission_enabled = true
+emission_energy_multiplier = 4.0
+emission_texture = ExtResource("3_n0qil")
+
+[sub_resource type="SphereMesh" id="SphereMesh_q2gma"]
+lightmap_size_hint = Vector2i(130, 66)
+material = SubResource("StandardMaterial3D_w0p17")
+radius = 4.2
+height = 8.4
 
 [node name="WorldEnvironment" type="WorldEnvironment"]
 environment = SubResource("Environment_mjx3w")
@@ -120,9 +108,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.795395, -18.738552, 77.501
 
 [node name="GPUParticles3D2" type="GPUParticles3D" parent="BlackHole"]
 transform = Transform3D(0.92083865, -0.36534232, -0.13631253, 0.38994375, 0.86274326, 0.3218973, 0, -0.3495697, 0.93691033, 0, 0, 0)
+transparency = 0.5
 amount = 700
 lifetime = 4.0
 preprocess = 4.0
+speed_scale = 0.5
 local_coords = true
 transform_align = 2
 trail_enabled = true
@@ -130,16 +120,8 @@ trail_lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_p2sof")
 draw_pass_1 = SubResource("TubeTrailMesh_62m2q")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="BlackHole"]
-visible = false
-material_override = SubResource("StandardMaterial3D_n0qil")
-amount = 500
-lifetime = 4.0
-preprocess = 2.0
-trail_enabled = true
-trail_lifetime = 0.5
-process_material = SubResource("ParticleProcessMaterial_mjx3w")
-draw_pass_1 = SubResource("RibbonTrailMesh_w0p17")
-
 [node name="MeshInstance3D" type="MeshInstance3D" parent="BlackHole"]
 mesh = SubResource("SphereMesh_7nf2k")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="BlackHole"]
+mesh = SubResource("SphereMesh_q2gma")

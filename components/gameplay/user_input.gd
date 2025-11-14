@@ -13,6 +13,8 @@ extends Node
 var mouse_aim_sensitivity := 0.5
 var joystick_aim_sensitivity := 5
 
+@onready var player_antimation = $"../moth/AnimationPlayer"
+
 const DASH_COOLDOWN = 0.6
 const DASH_LENGTH = 0.3
 const DASH_SPEED_CAP = 2 #multiplier
@@ -48,6 +50,7 @@ func _ready() -> void:
 
 	print("using relative: ", use_relative_joystick)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	player_antimation.play("Idle")
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
