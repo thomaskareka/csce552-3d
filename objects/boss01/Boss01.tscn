@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bij33rgmt2n2h"]
+[gd_scene load_steps=21 format=3 uid="uid://bij33rgmt2n2h"]
 
 [ext_resource type="Script" uid="uid://bl3vojitachid" path="res://components/ai/blob_ai.gd" id="1_hgrkj"]
 [ext_resource type="PackedScene" uid="uid://1hoyngcpgbsi" path="res://components/gameplay/HealthSystem.tscn" id="2_0t087"]
@@ -10,6 +10,20 @@
 [ext_resource type="PackedScene" uid="uid://dip0a27ya01pq" path="res://components/ai/states/attacks/fly_to_player/FlyToPlayerFast.tscn" id="7_0dtui"]
 [ext_resource type="PackedScene" uid="uid://cr3qxywvhtkj2" path="res://components/ai/states/blobs/CircleIdleFast.tscn" id="8_ntavk"]
 [ext_resource type="PackedScene" uid="uid://b43bdcvv7esv2" path="res://components/ai/states/attacks/fly_to_player/FlyToPlayerProjectile.tscn" id="9_6onux"]
+[ext_resource type="PackedScene" uid="uid://w35owgb7ivem" path="res://components/ai/states/attacks/DualLazer.tscn" id="9_xo1di"]
+[ext_resource type="PackedScene" uid="uid://dfdetqwvenpal" path="res://components/ai/states/attacks/DVDBounce.tscn" id="10_tv0l8"]
+
+[sub_resource type="Resource" id="Resource_457ov"]
+script = ExtResource("2_ntavk")
+scene = ExtResource("9_xo1di")
+max_phase = 3
+metadata/_custom_type_script = "uid://be4t8sbipsmoi"
+
+[sub_resource type="Resource" id="Resource_kj51s"]
+script = ExtResource("2_ntavk")
+scene = ExtResource("10_tv0l8")
+max_phase = 3
+metadata/_custom_type_script = "uid://be4t8sbipsmoi"
 
 [sub_resource type="Resource" id="Resource_ay7u0"]
 script = ExtResource("2_ntavk")
@@ -29,6 +43,12 @@ scene = ExtResource("9_6onux")
 max_phase = 3
 metadata/_custom_type_script = "uid://be4t8sbipsmoi"
 
+[sub_resource type="Resource" id="Resource_tv0l8"]
+script = ExtResource("2_ntavk")
+scene = ExtResource("4_qnv2c")
+max_phase = 3
+metadata/_custom_type_script = "uid://be4t8sbipsmoi"
+
 [sub_resource type="Resource" id="Resource_ntavk"]
 script = ExtResource("2_ntavk")
 scene = ExtResource("3_nnc8w")
@@ -41,15 +61,12 @@ scene = ExtResource("8_ntavk")
 max_phase = 3
 metadata/_custom_type_script = "uid://be4t8sbipsmoi"
 
-[sub_resource type="Resource" id="Resource_tv0l8"]
-script = ExtResource("2_ntavk")
-scene = ExtResource("4_qnv2c")
-max_phase = 3
-metadata/_custom_type_script = "uid://be4t8sbipsmoi"
-
 [node name="Boss01" type="Node3D" groups=["Boss"]]
 script = ExtResource("1_hgrkj")
+TARGET_Z = 0
 states = Dictionary[String, ExtResource("2_ntavk")]({
+"a_dual_laser": SubResource("Resource_457ov"),
+"a_dvd_bounce": SubResource("Resource_kj51s"),
 "a_fly_to_player": SubResource("Resource_ay7u0"),
 "a_fly_to_player_fast": SubResource("Resource_xo1di"),
 "a_fly_to_player_projectile": SubResource("Resource_0t087"),
@@ -57,7 +74,7 @@ states = Dictionary[String, ExtResource("2_ntavk")]({
 "i_circle": SubResource("Resource_ntavk"),
 "i_circle_fast": SubResource("Resource_6onux")
 })
-start_state = "a_fly_to_player_fast"
+start_state = "a_fly_to_player_projectile"
 
 [node name="HealthSystem" parent="." instance=ExtResource("2_0t087")]
 max_health = 500

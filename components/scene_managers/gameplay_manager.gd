@@ -36,7 +36,15 @@ func _on_entity_died(type: HealthSystem.EntityType):
 		_lose_game()
 
 func _win_game() -> void:
-	print("win")
+	_change_to_game_over("You win!")
 
 func _lose_game() -> void:
-	print("lose")
+	_change_to_game_over("Try again?")
+
+func _change_to_game_over(status: String) -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	var scene: GameOverManager = load(MenuManager.GAME_OVER_SCENE).instantiate()
+	scene.result_text = status
+	get_tree().root.add_child(scene)
+	get_tree().current_scene.queue_free()
+	get_tree().current_scene = scene

@@ -11,6 +11,7 @@ var base_position: Vector3
 
 func init(_p: Projectile, _params: Dictionary = {}):
 	super.init(_p, _params)
+	_p.collider.SELF_DESTRUCT = _params.get("self_destruct", true)
 	constant_axis = _params.get("constant_axis", Vector3(1, 0, 0))
 	constant_position_value = _params.get("constant_position_value", 0.0)
 	beam_base = _params.get("beam_position", Vector3(0,0,20))

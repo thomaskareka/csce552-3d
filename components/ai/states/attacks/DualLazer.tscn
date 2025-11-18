@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://w35owgb7ivem"]
 
-[ext_resource type="Script" uid="uid://dnl6wat8k1wab" path="res://components/ai/states/blobs/dual_lazer.gd" id="1_rdijx"]
+[ext_resource type="Script" uid="uid://dnl6wat8k1wab" path="res://components/ai/states/attacks/dual_lazer.gd" id="1_rdijx"]
 [ext_resource type="PackedScene" uid="uid://drcikn5cxi5i8" path="res://components/projectiles/ProjectileManager.tscn" id="2_p58bm"]
 [ext_resource type="Script" uid="uid://csfequd3o2h1h" path="res://components/projectiles/movement_data/lazer_axis.gd" id="3_p58bm"]
 [ext_resource type="Script" uid="uid://ds16n8tolty8e" path="res://components/projectiles/projectile_data.gd" id="4_c7hvc"]

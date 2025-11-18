@@ -1,7 +1,10 @@
 extends Node3D
+class_name MenuManager
 
 const GAMEPLAY_SCENE = "uid://yhh26tl28cen"
 const SETTINGS_SCENE = "uid://omexrlllgk5v"
+const MENU_SCENE = "uid://3046lgay8fu8"
+const GAME_OVER_SCENE = "uid://cq37vofnjpmyu"
 
 func _ready() -> void:
 	pass

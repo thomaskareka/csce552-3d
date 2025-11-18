@@ -74,14 +74,16 @@ func spawn_lazers() -> void:
 		"constant_axis": Vector3(1, 0, 0),
 		"constant_position_value": targets[0].x / 2.0,
 		"beam_position": entity.global_position + targets[0],
-		"speed": 2.0
+		"speed": 2.0,
+		"self_destruct": false
 	}
 	var params_right = {
 		"constant_axis": Vector3(1, 0, 0),
 		"constant_position_value": targets[1].y / 2.0,
 		"beam_position": entity.global_position + targets[1],
 		"speed": 2.0,
-		"starting_rotation": Vector3(0, 90, 0)
+		"starting_rotation": Vector3(0, 90, 0),
+		"self_destruct": false
 	}
 	
 	lazer_manager.spawn_projectile(params_left)
