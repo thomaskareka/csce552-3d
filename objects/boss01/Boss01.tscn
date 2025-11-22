@@ -74,7 +74,7 @@ states = Dictionary[String, ExtResource("2_ntavk")]({
 "i_circle": SubResource("Resource_ntavk"),
 "i_circle_fast": SubResource("Resource_6onux")
 })
-start_state = "a_fly_to_player_projectile"
+start_state = "a_dvd_bounce"
 
 [node name="HealthSystem" parent="." instance=ExtResource("2_0t087")]
 max_health = 500

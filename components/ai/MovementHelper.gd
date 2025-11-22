@@ -73,3 +73,9 @@ static func circular_move(delta: float, items: Array[Node3D], count: int, radius
 		offset = rotation_basis * offset
 		var target_velocity = MovementHelper.get_velocity_to_target(item.global_position, center + offset, velocity, delta)
 		MovementHelper.move_with_force(item, delta, target_velocity, acceleration)
+
+static func get_random_unit_vector() -> Vector3:
+	var v = Vector3(randf() * 2.0 - 1.0, randf() * 2.0 - 1.0, randf() * 2.0 - 1.0)
+	if v.length() == 0:
+		return Vector3(1, 0, 0)
+	return v.normalized()
