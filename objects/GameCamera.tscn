@@ -1,5 +1,8 @@
-[gd_scene format=3 uid="uid://dgi3541b0t7ph"]
+[gd_scene load_steps=2 format=3 uid="uid://dgi3541b0t7ph"]
+
+[ext_resource type="Script" uid="uid://ci5b1cofkbr6x" path="res://components/game_camera.gd" id="1_f3dho"]
 
 [node name="GameCamera" type="Camera3D"]
 fov = 20.0
 near = 4.0
+script = ExtResource("1_f3dho")
