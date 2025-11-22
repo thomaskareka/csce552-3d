@@ -66,3 +66,6 @@ mesh = SubResource("SphereMesh_reay4")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="MeshInstance3D"]
 mesh = SubResource("SphereMesh_l4ymu")
+
+[node name="VisibleOnScreenNotifier3D" type="VisibleOnScreenNotifier3D" parent="."]
+aabb = AABB(-0.5, -0.5, -0.5, 1, 1, 1)

@@ -2,6 +2,7 @@ extends Node3D
 class_name GameplayManager
 
 @onready var gameplay_gui: GameplayGUI = $GameplayGUI
+@onready var camera: Camera3D = $GameCamera
 @export var player_bounds: AABB = AABB(Vector3(-5,-3,0), Vector3(10, 6, 0))
 @export var boss_bounds: AABB = AABB(Vector3(-10, -6, 20), Vector3(20, 12, 0))
 
@@ -64,6 +65,7 @@ func _start_game() -> void:
 	
 	boss.set_player_bounds(player_bounds)
 	boss.set_self_bounds(boss_bounds)
+	boss.camera = camera
 	
 func _on_entity_hp_changed(current: int, max: int, type: HealthSystem.EntityType):
 	if not (type == HealthSystem.EntityType.ENEMY):

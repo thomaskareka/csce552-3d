@@ -20,3 +20,16 @@ func _ready() -> void:
 		child_health.init(health_system)
 		new_blob.add_child(child_health)
 	super._ready()
+	
+func choose_state(params: Dictionary = {}) -> Array:
+	for blob in blobs:
+		var blob_visible: bool = false
+		
+		var notifier = blob.get_node_or_null("VisibleOnScreenNotifier3D")
+		if notifier:
+			blob_visible = notifier.is_on_screen()
+		if not blob_visible:
+			blob.linear_velocity = Vector3.ZERO
+			blob.global_position = MovementHelper.get_random_point_outside_aabb(boss_bounds, 10)
+		
+	return super.choose_state(params)

@@ -11,6 +11,8 @@ var boss_bounds: AABB
 var last_state = ""
 var phase = 1
 
+var camera: Camera3D #used for warping back if off screen
+
 func _ready() -> void:
 	var timer := Timer.new()
 	timer.wait_time = 1.0

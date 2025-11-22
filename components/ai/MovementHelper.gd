@@ -50,6 +50,19 @@ static func get_random_point_in_aabb(aabb: AABB) -> Vector3:
 		randf_range(aabb.position.y, aabb.position.y + aabb.size.y),
 		randf_range(aabb.position.z, aabb.position.z + aabb.size.z)
 	)
+static func get_random_point_outside_aabb(aabb: AABB, offset: float) -> Vector3:
+	var axis = randi_range(0, 1)
+	var direction = -1 if randf() < 0.5 else 1
+	
+	var point = Vector3(
+		randf_range(aabb.position.x, aabb.position.x + aabb.size.x),
+		randf_range(aabb.position.y, aabb.position.y + aabb.size.y),
+		randf_range(aabb.position.z, aabb.position.z + aabb.size.z)
+	)
+	
+	point[axis] = (aabb.position[axis] + (aabb.size[axis] if direction > 0.0 else 0.0)) + direction * offset
+	
+	return point
 
 static func circular_move(delta: float, items: Array[Node3D], count: int, radius: float, time: float, rotation_speed: float, velocity: float, acceleration: float, center: Vector3, spin_axis:Vector3 = Vector3.FORWARD, start_time: float = 0.0):
 	for i in range(count):
