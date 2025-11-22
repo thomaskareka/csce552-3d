@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://15meo2v66wk2"]
+
+[ext_resource type="Script" uid="uid://c6qmwus8kuf7a" path="res://components/ai/states/attacks/dvd_bounce.gd" id="1_w0u8b"]
+
+[node name="DvdBounce" type="Node3D"]
+script = ExtResource("1_w0u8b")
+max_idle = 8
+blob_delay = 0.25
