@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dfdetqwvenpal"]
 
-[ext_resource type="Script" uid="uid://c6qmwus8kuf7a" path="res://components/ai/states/attacks/dvd_bounce.gd" id="1_mxkw7"]
+[ext_resource type="Script" uid="uid://c6qmwus8kuf7a" path="res://components/ai/states/attacks/dvd/dvd_bounce.gd" id="1_mxkw7"]
 
 [node name="DvdBounce" type="Node3D"]
 script = ExtResource("1_mxkw7")

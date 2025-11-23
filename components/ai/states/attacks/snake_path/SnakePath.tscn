@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://wngbkq4cc163"]
+
+[ext_resource type="Script" uid="uid://4hav5pvxi0aj" path="res://components/ai/states/attacks/snake_path/path_follower.gd" id="1_qdqn0"]
+
+[sub_resource type="Curve3D" id="Curve3D_qxu6c"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 0, -6, 3, -1, 0, 0, 0, 0, 0, 0, 5, 3, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, -5, 0, 0, 0, 0.568, 0, 0, 0, 0, -5, -3, 0, 0, 0, 0, 0, 0, 0, 5, -3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 20),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 8
+
+[node name="SnakePath" type="Node3D"]
+script = ExtResource("1_qdqn0")
+
+[node name="Path3D" type="Path3D" parent="."]
+curve = SubResource("Curve3D_qxu6c")
