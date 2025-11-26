@@ -10,7 +10,7 @@ enum EntityType {
 
 var current_health := max_health
 
-signal health_changed(current: int, max: int, type: EntityType)
+signal health_changed(current: int, max: int, type: EntityType, phase: int)
 signal died(type: EntityType)
 
 func _ready() -> void:

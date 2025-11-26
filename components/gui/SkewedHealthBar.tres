@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cl1e426ibhtcw"]
+
+[ext_resource type="Shader" uid="uid://bxo5qt2c2wwhc" path="res://components/gui/SkewedHealthBar.gdshader" id="1_nisqc"]
+
+[resource]
+shader = ExtResource("1_nisqc")
+shader_parameter/skew_pixels = -20.0

@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://yhh26tl28cen"]
+[gd_scene load_steps=10 format=3 uid="uid://yhh26tl28cen"]
 
 [ext_resource type="PackedScene" uid="uid://dyafskg3ggf6v" path="res://objects/Environment.tscn" id="1_5sdaa"]
 [ext_resource type="Script" uid="uid://dbqgo16rb0puw" path="res://components/scene_managers/gameplay_manager.gd" id="1_a8mty"]
 [ext_resource type="PackedScene" uid="uid://dgi3541b0t7ph" path="res://objects/GameCamera.tscn" id="2_a8mty"]
 [ext_resource type="PackedScene" uid="uid://yweftwdkos12" path="res://scenes/PauseScreen.tscn" id="2_xbw1n"]
+[ext_resource type="PackedScene" uid="uid://bp2oex3c71egl" path="res://components/gui/PhasedHealthBar.tscn" id="3_hsn8a"]
 [ext_resource type="PackedScene" uid="uid://bdpifgyevjjc5" path="res://objects/Player.tscn" id="3_jfxgp"]
 [ext_resource type="Script" uid="uid://dbw7pnpc5lwuj" path="res://components/gameplay/gameplay_gui_manager.gd" id="5_jfxgp"]
 [ext_resource type="PackedScene" uid="uid://clyer6k1tm78d" path="res://components/gameplay/EntityTracker.tscn" id="6_4rwr5"]
@@ -19,28 +20,22 @@ offset_right = 1280.0
 offset_bottom = 720.0
 script = ExtResource("5_jfxgp")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="GameplayGUI"]
-custom_minimum_size = Vector2(1280, 720)
+[node name="PlayerHPBar" type="ProgressBar" parent="GameplayGUI"]
+custom_minimum_size = Vector2(200, 40)
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="PlayerHPBar" type="ProgressBar" parent="GameplayGUI/HBoxContainer"]
-custom_minimum_size = Vector2(200, 40)
-layout_mode = 2
+offset_left = 60.0
+offset_top = 45.0
+offset_right = 260.0
+offset_bottom = 85.0
 value = 100.0
 show_percentage = false
 
-[node name="Spacer" type="Control" parent="GameplayGUI/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="EnemyHPBar" type="ProgressBar" parent="GameplayGUI/HBoxContainer"]
-custom_minimum_size = Vector2(200, 40)
-layout_mode = 2
-value = 100.0
-fill_mode = 1
-show_percentage = false
+[node name="PhasedHealthBar" parent="GameplayGUI" instance=ExtResource("3_hsn8a")]
+layout_mode = 1
+offset_left = 927.0
+offset_top = 26.0
+offset_right = 291.0
+offset_bottom = -476.0
 
 [node name="WorldEnvironment" parent="." instance=ExtResource("1_5sdaa")]
 

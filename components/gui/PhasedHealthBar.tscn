@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://bp2oex3c71egl"]
+
+[ext_resource type="Texture2D" uid="uid://dcaqil1iop6xy" path="res://assets/boss_healthbar.png" id="1_51l6s"]
+[ext_resource type="Script" uid="uid://d3uurx3wetx5f" path="res://components/gui/phased_health_bar.gd" id="1_ocrqa"]
+[ext_resource type="Material" uid="uid://cl1e426ibhtcw" path="res://components/gui/SkewedHealthBar.tres" id="2_51l6s"]
+[ext_resource type="Shader" uid="uid://bxo5qt2c2wwhc" path="res://components/gui/SkewedHealthBar.gdshader" id="2_ocrqa"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sqw7b"]
+shader = ExtResource("2_ocrqa")
+shader_parameter/skew_pixels = -45.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n7bng"]
+bg_color = Color(0.9843137, 0, 0, 0.7058824)
+corner_detail = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_51l6s"]
+bg_color = Color(0.9843137, 0.3764706, 0, 0.7058824)
+corner_detail = 6
+
+[node name="PhasedHealthBar" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -636.0
+offset_bottom = -502.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_ocrqa")
+
+[node name="PhaseBar" type="ProgressBar" parent="."]
+material = SubResource("ShaderMaterial_sqw7b")
+layout_mode = 0
+offset_left = 26.0
+offset_top = 60.0
+offset_right = 528.0
+offset_bottom = 132.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_n7bng")
+value = 100.0
+fill_mode = 1
+show_percentage = false
+
+[node name="HPBar" type="ProgressBar" parent="."]
+material = ExtResource("2_51l6s")
+layout_mode = 0
+offset_left = 59.0
+offset_top = 133.0
+offset_right = 410.0
+offset_bottom = 167.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_51l6s")
+value = 100.0
+fill_mode = 1
+show_percentage = false
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 638.0
+offset_bottom = 213.0
+texture = ExtResource("1_51l6s")
+expand_mode = 2

@@ -1,7 +1,6 @@
 [gd_scene load_steps=25 format=3 uid="uid://bij33rgmt2n2h"]
 
 [ext_resource type="Script" uid="uid://bl3vojitachid" path="res://components/ai/blob_ai.gd" id="1_hgrkj"]
-[ext_resource type="PackedScene" uid="uid://1hoyngcpgbsi" path="res://components/gameplay/HealthSystem.tscn" id="2_0t087"]
 [ext_resource type="PackedScene" uid="uid://f7uiqvdwatqk" path="res://components/ai/StateMachine.tscn" id="2_nnc8w"]
 [ext_resource type="Script" uid="uid://be4t8sbipsmoi" path="res://components/ai/state_requirement.gd" id="2_ntavk"]
 [ext_resource type="PackedScene" uid="uid://xvs1lencgiw4" path="res://components/ai/states/blobs/CircleIdle.tscn" id="3_nnc8w"]
@@ -14,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dfdetqwvenpal" path="res://components/ai/states/attacks/dvd/DVDBounce.tscn" id="10_tv0l8"]
 [ext_resource type="PackedScene" uid="uid://15meo2v66wk2" path="res://components/ai/states/attacks/dvd/DVDBounceHard.tscn" id="11_tv0l8"]
 [ext_resource type="PackedScene" uid="uid://wngbkq4cc163" path="res://components/ai/states/attacks/snake_path/SnakePath.tscn" id="12_457ov"]
+[ext_resource type="PackedScene" uid="uid://dwu0p0p7l2dcy" path="res://components/gameplay/PhasedHealthSystem.tscn" id="13_457ov"]
 
 [sub_resource type="Resource" id="Resource_457ov"]
 script = ExtResource("2_ntavk")
@@ -24,36 +24,47 @@ metadata/_custom_type_script = "uid://be4t8sbipsmoi"
 [sub_resource type="Resource" id="Resource_kj51s"]
 script = ExtResource("2_ntavk")
 scene = ExtResource("10_tv0l8")
-max_phase = 3
+max_phase = 2
 metadata/_custom_type_script = "uid://be4t8sbipsmoi"
 
 [sub_resource type="Resource" id="Resource_socd8"]
 script = ExtResource("2_ntavk")
 scene = ExtResource("11_tv0l8")
+min_phase = 2
 max_phase = 3
 metadata/_custom_type_script = "uid://be4t8sbipsmoi"
 
 [sub_resource type="Resource" id="Resource_ay7u0"]
 script = ExtResource("2_ntavk")
 scene = ExtResource("6_5gcq7")
-max_phase = 3
+max_phase = 1
 metadata/_custom_type_script = "uid://be4t8sbipsmoi"
 
 [sub_resource type="Resource" id="Resource_xo1di"]
 script = ExtResource("2_ntavk")
 scene = ExtResource("7_0dtui")
+min_phase = 2
 max_phase = 3
 metadata/_custom_type_script = "uid://be4t8sbipsmoi"
 
 [sub_resource type="Resource" id="Resource_0t087"]
 script = ExtResource("2_ntavk")
 scene = ExtResource("9_6onux")
+min_phase = 2
 max_phase = 3
 metadata/_custom_type_script = "uid://be4t8sbipsmoi"
 
 [sub_resource type="Resource" id="Resource_tv0l8"]
 script = ExtResource("2_ntavk")
 scene = ExtResource("4_qnv2c")
+min_phase = 2
+max_phase = 3
+metadata/_custom_type_script = "uid://be4t8sbipsmoi"
+
+[sub_resource type="Resource" id="Resource_2nllq"]
+script = ExtResource("2_ntavk")
+scene = ExtResource("12_457ov")
+min_phase = 3
 max_phase = 3
 metadata/_custom_type_script = "uid://be4t8sbipsmoi"
 
@@ -66,12 +77,6 @@ metadata/_custom_type_script = "uid://be4t8sbipsmoi"
 [sub_resource type="Resource" id="Resource_6onux"]
 script = ExtResource("2_ntavk")
 scene = ExtResource("8_ntavk")
-max_phase = 3
-metadata/_custom_type_script = "uid://be4t8sbipsmoi"
-
-[sub_resource type="Resource" id="Resource_2nllq"]
-script = ExtResource("2_ntavk")
-scene = ExtResource("12_457ov")
 max_phase = 3
 metadata/_custom_type_script = "uid://be4t8sbipsmoi"
 
@@ -90,10 +95,9 @@ states = Dictionary[String, ExtResource("2_ntavk")]({
 "i_circle": SubResource("Resource_ntavk"),
 "i_circle_fast": SubResource("Resource_6onux")
 })
-start_state = "a_snake_path"
+start_state = "i_circle"
 
-[node name="HealthSystem" parent="." instance=ExtResource("2_0t087")]
-max_health = 500
+[node name="HealthSystem" parent="." instance=ExtResource("13_457ov")]
 entity_type = 1
 
 [node name="StateMachine" parent="." instance=ExtResource("2_nnc8w")]

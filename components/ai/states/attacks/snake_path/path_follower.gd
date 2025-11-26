@@ -29,6 +29,8 @@ func enter(_entity: Node3D, _machine: Node, params: Dictionary = {}) -> void:
 func tick(delta: float) -> void:
 	move_head(delta)
 	update_followers(delta)
+	
+	super.tick(delta)
 
 func move_head(delta: float) -> void:
 	var curve := path.curve

@@ -67,9 +67,9 @@ func _start_game() -> void:
 	boss.set_self_bounds(boss_bounds)
 	boss.camera = camera
 	
-func _on_entity_hp_changed(current: int, max: int, type: HealthSystem.EntityType):
+func _on_entity_hp_changed(current: int, max: int, type: HealthSystem.EntityType, phase: int = 0):
 	if not (type == HealthSystem.EntityType.ENEMY):
-		gameplay_gui.change_hp_bar(current, max, type)
+		gameplay_gui.change_hp_bar(current, max, type, phase)
 
 func _on_entity_died(type: HealthSystem.EntityType):
 	if type == HealthSystem.EntityType.BOSS:

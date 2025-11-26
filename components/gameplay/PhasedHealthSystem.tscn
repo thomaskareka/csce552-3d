@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwu0p0p7l2dcy"]
+
+[ext_resource type="Script" uid="uid://ctwd6010krt0d" path="res://components/gameplay/phased_health_system.gd" id="1_vnbrh"]
+
+[node name="HealthSystem" type="Node" groups=["health_system"]]
+script = ExtResource("1_vnbrh")
