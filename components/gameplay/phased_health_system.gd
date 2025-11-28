@@ -17,5 +17,7 @@ func take_damage(amount: int):
 	
 		var boss: EnemyAI = get_parent()
 		boss.phase = current_phase
+		
+		AudioManager.play_sfx(AudioInfo.S_BOSS_TRANSITION)
 	
 	health_changed.emit(current_health, max_health, entity_type, current_phase)

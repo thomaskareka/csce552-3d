@@ -82,6 +82,7 @@ func _handle_move(delta: float) -> void:
 		dash_time = DASH_LENGTH
 		dash_cooldown_time = DASH_COOLDOWN
 		dash_dir = move_dir
+		AudioManager.play_sfx(AudioInfo.S_DASH)
 	
 	if is_dashing:
 		current_velocity = lerp(dash_dir * max_velocity * DASH_SPEED_CAP, dash_dir * max_velocity, (1.0  - (dash_time / DASH_LENGTH)))
@@ -125,6 +126,7 @@ func _handle_attack(delta: float):
 			var direction = (aim_indicator.global_position - basic_projectile_manager.global_position).normalized()
 			var params = {"direction": direction}
 			strong_projectile_manager.spawn_projectile(params)
+			AudioManager.play_sfx(AudioInfo.S_PLAYER_SHOOT_S)
 		charge_held_time = CHARGE_TIME
 	elif not Input.is_action_pressed("charge_input"):
 		charge_held_time = CHARGE_TIME
@@ -138,6 +140,7 @@ func _handle_attack(delta: float):
 			var direction = (aim_indicator.global_position - basic_projectile_manager.global_position).normalized()
 			var params = {"direction": direction}
 			basic_projectile_manager.spawn_projectile(params)
+			AudioManager.play_sfx(AudioInfo.S_PLAYER_SHOOT_N, false, 0.0, -12.0)
 	else:
 		small_projectile_cooldown_time = SMALL_PROJECTILE_COOLDOWN
 		if charge_projectile_cooldown_time <= 0:

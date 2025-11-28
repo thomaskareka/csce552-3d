@@ -21,3 +21,5 @@ func take_damage(amount: int):
 	health_changed.emit(current_health, max_health, entity_type)
 	if current_health == 0:
 		died.emit(entity_type)
+	if entity_type == EntityType.PLAYER:
+		AudioManager.play_sfx(AudioInfo.S_PLAYER_HURT)

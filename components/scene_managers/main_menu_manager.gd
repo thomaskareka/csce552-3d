@@ -7,7 +7,7 @@ const MENU_SCENE = "uid://3046lgay8fu8"
 const GAME_OVER_SCENE = "uid://cq37vofnjpmyu"
 
 func _ready() -> void:
-	pass
+	AudioManager.play_song(AudioInfo.MENU_SONG)
 
 func _on_play_button_pressed() -> void:
 	get_tree().change_scene_to_file(GAMEPLAY_SCENE)

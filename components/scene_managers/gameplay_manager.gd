@@ -67,6 +67,8 @@ func _start_game() -> void:
 	boss.set_self_bounds(boss_bounds)
 	boss.camera = camera
 	
+	AudioManager.play_song(AudioInfo.GAMEPLAY_SONG)
+	
 func _on_entity_hp_changed(current: int, max: int, type: HealthSystem.EntityType, phase: int = 0):
 	if not (type == HealthSystem.EntityType.ENEMY):
 		gameplay_gui.change_hp_bar(current, max, type, phase)
@@ -84,6 +86,7 @@ func _lose_game() -> void:
 	_change_to_game_over("Try again?")
 
 func _change_to_game_over(status: String) -> void:
+	AudioManager.fade_song()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	var scene: GameOverManager = load(MenuManager.GAME_OVER_SCENE).instantiate()
 	scene.result_text = status
