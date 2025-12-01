@@ -5,6 +5,7 @@ var sfx_players: Array = []
 
 const MAX_SFX_CHANNELS = 8
 
+var fade_tween: Tween
 
 func _ready() -> void:
 	music_player = AudioStreamPlayer.new()
@@ -16,6 +17,8 @@ func _ready() -> void:
 		add_child(player)
 	
 func play_song(id: String, ignore_playing = true):
+	if fade_tween:
+		fade_tween.kill()
 	music_player.volume_db = GlobalData.data["music_volume"]
 	if music_player.playing and not ignore_playing:
 		return
@@ -50,8 +53,8 @@ func play_sfx(id: String, random_pitch := false, pitch_mod := 0.0, audio_mod := 
 		player.play()
 
 func fade_song():
-	var tween = music_player.create_tween()
-	tween.tween_property(music_player, "volume_db", -80, 3)
+	fade_tween = music_player.create_tween()
+	fade_tween.tween_property(music_player, "volume_db", -80, 3)
 
 func _get_sfx_player():
 	for p in sfx_players:
