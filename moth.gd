@@ -1,6 +1,7 @@
 extends Node3D
 class_name MothModel
 @onready var skeleton: Skeleton3D = $Armature/Skeleton3D
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 const HEAD_BONE = "head"
 
 var head_bone_index: int
@@ -22,3 +23,6 @@ func look_at_indicator(target_pos: Vector3):
 	bone_pose.basis = new_basis
 	
 	skeleton.set_bone_global_pose_override(head_bone_index, bone_pose, 1.0, true)
+
+func set_speed(rate: float):
+	animation_player.speed_scale = rate

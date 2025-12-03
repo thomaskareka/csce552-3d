@@ -1,7 +1,7 @@
 extends Node
 
 @onready var parent: CharacterBody3D = get_parent()
-var moth_model
+var moth_model: MothModel
 @onready var aim_indicator: MeshInstance3D = $"../AimIndicator"
 @onready var basic_projectile_manager: ProjectileManager = $"../BasicAttack"
 @onready var strong_projectile_manager: ProjectileManager = $"../StrongAttack"
@@ -101,6 +101,7 @@ func _handle_move(delta: float) -> void:
 	
 	parent.velocity = current_velocity
 	parent.move_and_slide()
+	moth_model.set_speed(parent.velocity.length() * 1.5 / max_velocity + 1.0)
 	
 func _handle_aim(delta: float) -> void:
 	var joystick_raw = Input.get_vector("aim_right", "aim_left", "aim_down", "aim_up", 0.1)

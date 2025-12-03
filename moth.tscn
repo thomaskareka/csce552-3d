@@ -5,3 +5,22 @@
 
 [node name="moth" instance=ExtResource("1_3bc02")]
 script = ExtResource("2_fog0t")
+
+[node name="Skeleton3D" parent="Armature" index="0"]
+bones/5/rotation = Quaternion(-0.008858776, -0.0031205807, 0.33223546, 0.94314975)
+bones/6/rotation = Quaternion(0.018498236, -3.0267988e-09, 0.17364818, 0.9846341)
+bones/7/rotation = Quaternion(-0.50467426, 0.50467396, 0.4952818, 0.4952819)
+bones/8/rotation = Quaternion(-0.7071069, 1.9098726e-08, -1.1778574e-07, 0.70710665)
+bones/9/rotation = Quaternion(-0.7071069, 1.9098726e-08, -1.1778574e-07, 0.70710665)
+bones/10/rotation = Quaternion(-0.7071069, 1.9098726e-08, -1.1778574e-07, 0.70710665)
+bones/12/rotation = Quaternion(-0.008858776, 0.0031205807, -0.33223546, 0.94314975)
+bones/13/rotation = Quaternion(0.018498236, 3.0267988e-09, -0.17364818, 0.9846341)
+bones/14/rotation = Quaternion(-0.50467426, -0.50467396, -0.4952818, 0.4952819)
+bones/15/rotation = Quaternion(-0.7071069, -1.9098701e-08, 1.1778569e-07, 0.70710665)
+bones/16/rotation = Quaternion(-0.7071069, -1.9098701e-08, 1.1778569e-07, 0.70710665)
+bones/17/rotation = Quaternion(-0.7071069, -1.9098701e-08, 1.1778569e-07, 0.70710665)
+bones/20/rotation = Quaternion(0.001742148, -0.061111256, 0.9981294, -0.00010668016)
+bones/23/rotation = Quaternion(-0.046166334, 0.13122581, -0.5174382, 0.8443377)
+bones/24/rotation = Quaternion(0.090270095, 0.2585698, -0.75633734, 0.59409326)
+bones/25/rotation = Quaternion(-0.04616649, -0.13122596, 0.5174382, 0.8443377)
+bones/26/rotation = Quaternion(0.090269916, -0.25856996, 0.7563373, 0.59409326)
