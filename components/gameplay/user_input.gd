@@ -1,6 +1,7 @@
 extends Node
 
 @onready var parent: CharacterBody3D = get_parent()
+var moth_model
 @onready var aim_indicator: MeshInstance3D = $"../AimIndicator"
 @onready var basic_projectile_manager: ProjectileManager = $"../BasicAttack"
 @onready var strong_projectile_manager: ProjectileManager = $"../StrongAttack"
@@ -44,6 +45,7 @@ var aim_position := Vector2.ZERO
 var mouse_last_used := true
 
 func _ready() -> void:
+	moth_model = parent.get_node("moth")
 	use_relative_joystick = GlobalData.data.get("use_relative", false)
 	mouse_aim_sensitivity = GlobalData.data.get("mouse_sensitivity", 0.5)
 	joystick_aim_sensitivity = GlobalData.data.get("joystick_sensitivity", 5)
@@ -118,6 +120,8 @@ func _handle_aim(delta: float) -> void:
 	aim_indicator.position.x = aim_position.x
 	aim_indicator.position.y = aim_position.y
 	mouse_last_used = joystick_magnitude == 0
+	
+	moth_model.look_at_indicator(aim_indicator.position)
 
 func _handle_attack(delta: float):
 	if Input.is_action_just_released("charge_input"):
