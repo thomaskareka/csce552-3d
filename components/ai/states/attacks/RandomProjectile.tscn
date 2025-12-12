@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cvkcb21qu663b"]
+[gd_scene load_steps=10 format=3 uid="uid://cvkcb21qu663b"]
 
 [ext_resource type="Script" uid="uid://dcuqfvp1bttno" path="res://components/ai/states/attacks/random_projectile.gd" id="1_0ihh8"]
 [ext_resource type="PackedScene" uid="uid://drcikn5cxi5i8" path="res://components/projectiles/ProjectileManager.tscn" id="2_sg0vl"]
@@ -8,7 +8,16 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_gw4td"]
 radius = 0.35
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sg0vl"]
+albedo_color = Color(0.18039216, 0, 1, 1)
+metallic = 0.6
+roughness = 0.85
+emission_enabled = true
+emission = Color(3.272891e-06, 0, 0.8356346, 1)
+grow_amount = 16.0
+
 [sub_resource type="SphereMesh" id="SphereMesh_j532q"]
+material = SubResource("StandardMaterial3D_sg0vl")
 radius = 0.4
 height = 0.8
 

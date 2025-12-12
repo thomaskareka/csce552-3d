@@ -3,7 +3,14 @@ extends Node3D
 @onready var aim_slider: HSlider = $Control/ScrollContainer/VBoxContainer/AimSlider
 @onready var music_slider: HSlider = $Control/ScrollContainer/VBoxContainer/MusicSlider
 @onready var sfx_slider: HSlider = $Control/ScrollContainer/VBoxContainer/SFXSlider
+@onready var mouse_slider: HSlider = $Control/ScrollContainer/VBoxContainer/MouseSlider
 
+func _ready() -> void:
+	absolute_toggle.button_pressed = GlobalData.data["use_relative"]
+	aim_slider.value = GlobalData.data["joystick_sensitivity"]
+	music_slider.value = GlobalData.data["music_volume"]
+	sfx_slider.value = GlobalData.data["sfx_volume"]
+	mouse_slider.value = GlobalData.data["mouse_sensitivity"]
 
 func _on_aim_slider_value_changed(value: float) -> void:
 	GlobalData.data["joystick_sensitivity"] = value
