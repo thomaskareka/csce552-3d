@@ -22,9 +22,9 @@ offset_bottom = 720.0
 
 [node name="CenterContainer" type="CenterContainer" parent="Control"]
 layout_mode = 0
-offset_top = 40.0
+offset_top = 120.0
 offset_right = 1280.0
-offset_bottom = 80.0
+offset_bottom = 160.0
 
 [node name="Label" type="Label" parent="Control/CenterContainer"]
 layout_mode = 2
@@ -35,12 +35,16 @@ label_settings = SubResource("LabelSettings_0ykhv")
 offset_top = 360.0
 offset_right = 1280.0
 offset_bottom = 600.0
+theme_override_constants/separation = 50
+alignment = 1
 
 [node name="SettingsButton" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "SETTINGS"
 
 [node name="PlayButton" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 text = "PLAY"
 

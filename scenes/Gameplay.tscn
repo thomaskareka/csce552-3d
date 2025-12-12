@@ -1,14 +1,31 @@
-[gd_scene load_steps=10 format=3 uid="uid://yhh26tl28cen"]
+[gd_scene load_steps=13 format=3 uid="uid://yhh26tl28cen"]
 
 [ext_resource type="PackedScene" uid="uid://dyafskg3ggf6v" path="res://objects/Environment.tscn" id="1_5sdaa"]
 [ext_resource type="Script" uid="uid://dbqgo16rb0puw" path="res://components/scene_managers/gameplay_manager.gd" id="1_a8mty"]
 [ext_resource type="PackedScene" uid="uid://dgi3541b0t7ph" path="res://objects/GameCamera.tscn" id="2_a8mty"]
 [ext_resource type="PackedScene" uid="uid://yweftwdkos12" path="res://scenes/PauseScreen.tscn" id="2_xbw1n"]
+[ext_resource type="Shader" uid="uid://bxo5qt2c2wwhc" path="res://components/gui/SkewedHealthBar.gdshader" id="3_4j5yk"]
 [ext_resource type="PackedScene" uid="uid://bp2oex3c71egl" path="res://components/gui/PhasedHealthBar.tscn" id="3_hsn8a"]
 [ext_resource type="PackedScene" uid="uid://bdpifgyevjjc5" path="res://objects/Player.tscn" id="3_jfxgp"]
 [ext_resource type="Script" uid="uid://dbw7pnpc5lwuj" path="res://components/gameplay/gameplay_gui_manager.gd" id="5_jfxgp"]
 [ext_resource type="PackedScene" uid="uid://clyer6k1tm78d" path="res://components/gameplay/EntityTracker.tscn" id="6_4rwr5"]
 [ext_resource type="PackedScene" uid="uid://bij33rgmt2n2h" path="res://objects/boss01/Boss01.tscn" id="7_4rwr5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l501g"]
+shader = ExtResource("3_4j5yk")
+shader_parameter/skew_pixels = 20.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hlv5w"]
+bg_color = Color(0.5778246, 0.0032314986, 0.8906217, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.784326, 0.572485, 0.9999712, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [node name="Gameplay" type="Node3D"]
 script = ExtResource("1_a8mty")
@@ -21,12 +38,14 @@ offset_bottom = 720.0
 script = ExtResource("5_jfxgp")
 
 [node name="PlayerHPBar" type="ProgressBar" parent="GameplayGUI"]
+material = SubResource("ShaderMaterial_l501g")
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 0
 offset_left = 60.0
 offset_top = 45.0
 offset_right = 260.0
 offset_bottom = 85.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_hlv5w")
 value = 100.0
 show_percentage = false
 
