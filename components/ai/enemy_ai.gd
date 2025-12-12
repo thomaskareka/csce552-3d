@@ -8,7 +8,8 @@ class_name EnemyAI
 var player_bounds: AABB
 var boss_bounds: AABB
 
-var last_state = ""
+var last_state := ""
+var last_attack_state := ""
 var phase = 1
 
 var camera: Camera3D #used for warping back if off screen
@@ -57,6 +58,9 @@ func choose_state(params: Dictionary = {}) -> Array:
 	for key in states.keys():
 		if not key.begins_with(desired_prefix): continue
 		
+		if last_attack_state == key:
+			continue
+		
 		var state: StateRequirement = states[key]
 		if state.scene == null:
 			continue
@@ -81,3 +85,5 @@ func choose_state(params: Dictionary = {}) -> Array:
 
 func update_tracked_data(state: String) -> void:
 	last_state = state
+	if last_state.begins_with("a_"):
+		last_attack_state = last_state

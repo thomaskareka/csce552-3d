@@ -90,7 +90,7 @@ states = Dictionary[String, ExtResource("2_ntavk")]({
 start_state = "i_circle"
 
 [node name="HealthSystem" parent="." instance=ExtResource("13_457ov")]
-max_health = 500
+max_health = 750
 entity_type = 1
 
 [node name="StateMachine" parent="." instance=ExtResource("2_nnc8w")]

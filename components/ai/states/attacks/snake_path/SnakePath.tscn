@@ -11,6 +11,7 @@ point_count = 8
 
 [node name="SnakePath" type="Node3D"]
 script = ExtResource("1_qdqn0")
+state_length = 15.0
 
 [node name="Path3D" type="Path3D" parent="."]
 curve = SubResource("Curve3D_qxu6c")
